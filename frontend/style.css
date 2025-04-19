@@ -1,0 +1,36 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #eeb034;
+  }
+  
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #022851; /* UC Davis blue */
+    color: white;
+    padding: 1rem;
+    position: relative;
+  }
+  
+  .navbar-center a{
+    position: absolute;
+    transform: translateX(-50%);
+    transform: translateY(-50%);
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: white !important;
+    text-decoration: none !important;
+}
+  
+  .navbar-right a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .navbar-right a:hover {
+    text-decoration: underline;
+  }
+  
