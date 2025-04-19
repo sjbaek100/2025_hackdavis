@@ -5,10 +5,6 @@ source venv/bin/activate  # Windows: venv\Scripts\activate
 # 2. Install packages
 pip install -r requirements.txt
 
-# 3. Export env vars and init DB
-export FLASK_APP=app.py
-export FLASK_ENV=development
-
 # 4. Initialize migrations
 flask db init
 flask db migrate -m "Initial migration"
