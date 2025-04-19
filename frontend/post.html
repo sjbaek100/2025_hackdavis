@@ -5,7 +5,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Aggie Alert</title>
+    <title>Report Suspicious Activity</title>
+    <link rel="stylesheet" href="post.css" />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -19,13 +20,50 @@
     <main>
       <!-- Main content goes here -->
       <section>
-        <h2>Posting Page</h2>
-        <p>This is a paragraph of text in the main section.</p>
+        <div class="report">
+          <h2>Report Suspicious Activity</h2>
+          <form action="/report" method="POST" enctype="multipart/form-data" class="report-form" onsubmit="return confirmSubmit()">
+            <label>Title:
+              <input type="text" name="location" placeholder="e.g. Suspicious Acivity" required />
+            </label>
+            <label>Location:
+              <input type="text" name="location" placeholder="e.g. MU entrance" required />
+            </label>
+        
+            <label>Time:
+              <input type="datetime-local" name="time" required />
+            </label>
+        
+            <label>Description:
+              <textarea name="description" placeholder="Describe the incident..." required></textarea>
+            </label>
+        
+            <label>Category:
+              <select name="category" required>
+                <option value="">Select...</option>
+                <option value="drug">Drug Activity</option>
+                <option value="Behavior">Suspicious Behavior</option>
+                <option value="Weapon">Weapon Sighting</option>
+                <option value="Sexual">Sexual Harassment</option>
+                <option value="other">Other</option>
+              </select>
+            </label>
+        
+            <label>Upload Photo (optional):
+              <input type="file" name="photo" accept="image/*" />
+            </label>
+
+            <button type="cancel" onclick="window.history.back();">Cancel</button>
+            <button type="submit">Submit Report</button>
+          </form>
+        </div>
       </section>
     </main>
 
-
-    <!-- Optional JavaScript -->
-    <script src="script.js"></script>
+    <script>
+      function confirmSubmit() {
+        return confirm("Please ensure your report does not target any individual or contain language that could be offensive to any race, religion, culture, or ethnicity.\nIf you believe someone is in immediate danger, please call 911 right away.");
+      }
+    </script>
   </body>
 </html>
