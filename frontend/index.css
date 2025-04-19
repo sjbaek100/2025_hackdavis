@@ -39,9 +39,14 @@ main section h2 {
     max-height: 300px;
   }
 
-  .post h6 {
-    color: black;
-    margin-bottom: -20px;
+  .post h2{
+    margin-bottom: 0px;
+  }
+
+  .Time{
+    color: gray;
+    margin-bottom: -10px;
+    font-size: small;
   }
 
   .Location-category {
