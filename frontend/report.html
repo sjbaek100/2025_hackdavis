@@ -6,13 +6,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Report Suspicious Activity</title>
-    <link rel="stylesheet" href="post.css" />
+    <link rel="stylesheet" href="report.css" />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <nav class="navbar">
 
-      <div class="navbar-center"><a href="index.html">Aggie Alert</div>
+      <div class="navbar-center"><a href="index.html">
+        Aggie Alert</div>
       <div class="navbar-right"><a href="#">My Account</a></div>
     </nav>
 
@@ -32,11 +33,7 @@
             <label>Time:
               <input type="datetime-local" name="time" required />
             </label>
-        
-            <label>Description:
-              <textarea name="description" placeholder="Describe the incident..." required></textarea>
-            </label>
-        
+
             <label>Category:
               <select name="category" required>
                 <option value="">Select...</option>
@@ -48,6 +45,10 @@
               </select>
             </label>
         
+            <label>Description:
+              <textarea name="description" placeholder="Describe the incident..." required></textarea>
+            </label>
+              
             <label>Upload Photo (optional):
               <input type="file" name="photo" accept="image/*" />
             </label>
