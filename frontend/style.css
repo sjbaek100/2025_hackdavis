@@ -14,14 +14,15 @@ body {
     position: relative;
   }
   
-  .navbar-center {
+  .navbar-center a{
     position: absolute;
-    left: 50%;
     transform: translateX(-50%);
+    transform: translateY(-50%);
     font-weight: bold;
     font-size: 1.2rem;
-    color: white;
-  }
+    color: white !important;
+    text-decoration: none !important;
+}
   
   .navbar-right a {
     color: white;
