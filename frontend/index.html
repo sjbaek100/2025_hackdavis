@@ -32,11 +32,10 @@
 
       <div id="postings-container">
         <div class="post">
-            <h2>Suspicious Activity Be Aware</h2>
-            <p class="Time">MM-DD-YYYY 00:00</p>
-            <p class="Location-category">Location: Davis Downtown Category: Suspicious Activity</p>
-            <p class="Description">Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
-            </p>
+            <h2>{{ report.title }}</h2>
+            <p class="Time">{{ report.time }}</p>
+            <p class="Location-category">{{ report.location }} {{ report.category }}</p>
+            <p class="Description">{{ report.description }}</p>
             <a href="post.html">Read More</a>
           
             <div class="post-actions">
@@ -67,7 +66,6 @@
     <a href="post.html">
     <button class="alert-button">!</button>
     </a>
-
 
     <!-- Optional JavaScript -->
     <script src="index.js"></script>
