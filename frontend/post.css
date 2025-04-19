@@ -1,0 +1,44 @@
+.report-detail {
+    background-color: #fff;
+    margin: 1.5rem ;
+    padding: 1.5rem;
+    max-width: 600px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.report-detail h2 {
+    margin: 0 0 1rem 0;
+    color: #022851;
+}
+
+.report-detail p {
+    margin-bottom: 0.8rem;
+    line-height: 1.6;
+    color: #333;
+}
+
+.post-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.like-btn, .dislike-btn {
+    padding: 8px 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    color: black;
+    background-color: white;
+}
+
+
+.like-btn:hover {
+    background-color: rgb(0, 255, 0);
+}
+
+.dislike-btn:hover {
+    background-color: rgb(255, 0, 0);
+}

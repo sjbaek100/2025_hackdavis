@@ -1,0 +1,69 @@
+<!--포스트 등록 페이지-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Report Suspicious Activity</title>
+    <link rel="stylesheet" href="report.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+
+      <div class="navbar-center"><a href="index.html">
+        Aggie Alert</div>
+      <div class="navbar-right"><a href="#">My Account</a></div>
+    </nav>
+
+    <main>
+      <!-- Main content goes here -->
+      <section>
+        <div class="report">
+          <h2>Report Suspicious Activity</h2>
+          <form action="/report" method="POST" enctype="multipart/form-data" class="report-form" onsubmit="return confirmSubmit()">
+            <label>Title:
+              <input type="text" name="location" placeholder="e.g. Suspicious Acivity" required />
+            </label>
+            <label>Location:
+              <input type="text" name="location" placeholder="e.g. MU entrance" required />
+            </label>
+        
+            <label>Time:
+              <input type="datetime-local" name="time" required />
+            </label>
+
+            <label>Category:
+              <select name="category" required>
+                <option value="">Select...</option>
+                <option value="drug">Drug Activity</option>
+                <option value="Behavior">Suspicious Behavior</option>
+                <option value="Weapon">Weapon Sighting</option>
+                <option value="Sexual">Sexual Harassment</option>
+                <option value="other">Other</option>
+              </select>
+            </label>
+        
+            <label>Description:
+              <textarea name="description" placeholder="Describe the incident..." required></textarea>
+            </label>
+              
+            <label>Upload Photo (optional):
+              <input type="file" name="photo" accept="image/*" />
+            </label>
+
+            <button type="cancel" onclick="window.history.back();">Cancel</button>
+            <button type="submit">Submit Report</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      function confirmSubmit() {
+        return confirm("Please ensure your report does not target any individual or contain language that could be offensive to any race, religion, culture, or ethnicity.\nIf you believe someone is in immediate danger, please call 911 right away.");
+      }
+    </script>
+  </body>
+</html>
