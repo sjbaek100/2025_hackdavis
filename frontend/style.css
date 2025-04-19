@@ -20,7 +20,7 @@ body {
     transform: translateX(-50%);
     font-weight: bold;
     font-size: 1.2rem;
-    background-color: white;
+    color: white;
   }
   
   .navbar-right a {
