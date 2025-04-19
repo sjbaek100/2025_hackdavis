@@ -1,68 +1,38 @@
-<!--포스트 등록 페이지-->
-
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Report Suspicious Activity</title>
-    <link rel="stylesheet" href="post.css" />
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Report Details</title>
+    <link rel="stylesheet" href="post.css"/>
+    <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
     <nav class="navbar">
-
-      <div class="navbar-center"><a href="index.html">Aggie Alert</div>
-      <div class="navbar-right"><a href="#">My Account</a></div>
+        <div class="navbar-center"><a href="index.html">Aggie Alert</a></div>
+        <div class="navbar-right"><a href="#">My Account</a></div>
     </nav>
 
-    <main>
-      <!-- Main content goes here -->
-      <section>
-        <div class="report">
-          <h2>Report Suspicious Activity</h2>
-          <form action="/report" method="POST" enctype="multipart/form-data" class="report-form" onsubmit="return confirmSubmit()">
-            <label>Title:
-              <input type="text" name="location" placeholder="e.g. Suspicious Acivity" required />
-            </label>
-            <label>Location:
-              <input type="text" name="location" placeholder="e.g. MU entrance" required />
-            </label>
+<main>
+    <section class="report-detail">
+        <h2>{{ report.title }}</h2>
         
-            <label>Time:
-              <input type="datetime-local" name="time" required />
-            </label>
+        <p><strong>Time:</strong> {{ report.time }}</p>
+        <p><strong>Location:</strong> {{ report.location }}</p>
+        <p><strong>Category:</strong> {{ report.category }}</p>
+        <p><strong>Description:</strong><br>{{ report.description }}</p>
         
-            <label>Description:
-              <textarea name="description" placeholder="Describe the incident..." required></textarea>
-            </label>
-        
-            <label>Category:
-              <select name="category" required>
-                <option value="">Select...</option>
-                <option value="drug">Drug Activity</option>
-                <option value="Behavior">Suspicious Behavior</option>
-                <option value="Weapon">Weapon Sighting</option>
-                <option value="Sexual">Sexual Harassment</option>
-                <option value="other">Other</option>
-              </select>
-            </label>
-        
-            <label>Upload Photo (optional):
-              <input type="file" name="photo" accept="image/*" />
-            </label>
-
-            <button type="cancel" onclick="window.history.back();">Cancel</button>
-            <button type="submit">Submit Report</button>
-          </form>
+        {% if report.photo %}
+        <div>
+            <strong>Uploaded Photo:</strong><br>
+            <img src="{{ url_for('static', filename=report.photo) }}" alt="photo" style="max-width: 100%; border: 1px solid #ccc; border-radius: 8px; margin-top: 10px;" />
         </div>
-      </section>
-    </main>
-
-    <script>
-      function confirmSubmit() {
-        return confirm("Please ensure your report does not target any individual or contain language that could be offensive to any race, religion, culture, or ethnicity.\nIf you believe someone is in immediate danger, please call 911 right away.");
-      }
-    </script>
-  </body>
+        {% endif %}
+        <div class="post-actions">
+            <button class="like-btn">👍 Like <span class="like-count">0</span></button>
+            <button class="dislike-btn">👎 Dislike <span class="dislike-count">0</span></button>
+        </div>
+    </section>
+</main>
+</body>
 </html>
