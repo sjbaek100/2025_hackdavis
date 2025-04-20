@@ -15,11 +15,15 @@
           <img src="images/logo.svg" class="logo-image" />
         </a>
       </div>
-      <div class="navbar-right"><a href="login.html"><img src="images/human.svg" class="human-image" />My Account</a></div>
+      <div class="navbar-right">
+        <a href="login.html"
+          ><img src="images/human.svg" class="human-image" />My Account</a
+        >
+      </div>
     </nav>
 
     <main>
-      <form class="register-form" onsubmit="return validateRegisterForm()">
+      <form class="register-form" id="registerForm">
         <h2>Create Account</h2>
 
         <label for="email">Email</label>
@@ -39,6 +43,36 @@
         <button type="submit">Register</button>
       </form>
     </main>
+    <script>
+      document
+        .getElementById("registerForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const email = document.getElementById("email").value;
+          const password = document.getElementById("password").value;
+
+          fetch("http://127.0.0.1:5000/auth/register", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ email: email, password: password }),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              console.log(data);
+              if (data.message === "Registration successful") {
+                window.location.href = "login.html";
+              } else {
+                alert("Registration failed: " + data.message);
+              }
+            })
+            .catch((error) => {
+              console.error("Error during registration:", error);
+            });
+        });
+    </script>
     <script src="index.js"></script>
   </body>
 </html>
