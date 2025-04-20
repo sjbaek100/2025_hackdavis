@@ -25,14 +25,6 @@ main section h2 {
     text-align-last: center;
   }
   
-
-.sort-icon {
-    width: 16px;
-    height: 16px;
-    margin-left: 6px;
-    vertical-align: middle;
-    opacity: 0.7;
-}
   
 
 .like-btn.voted {
@@ -93,11 +85,11 @@ main section h2 {
 
 
 .alert-button:hover {
-  background-color: red;
+  background-color: rgb(230, 50, 50);
 }
 
   
-  .post {
+.post {
     background: white;
     padding: 15px;
     margin-bottom: 20px;
@@ -108,7 +100,7 @@ main section h2 {
     max-height: 300px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Shadow: 0px horizontally, 4px vertically, 6px blur, 20% opacity */
 
-  }
+}
 
 .post {
   background: white;
