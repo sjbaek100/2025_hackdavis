@@ -26,3 +26,11 @@ class Comment(db.Model):
 
     alert = db.relationship("Alert", backref=db.backref("comments", lazy=True))
 
+class User(db.Model):
+    __tablename__ = 'users'
+    
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(255), unique=True, nullable=False)
+    password_hash = db.Column(db.String(128), nullable=False)
+    created_at = db.Column(db.DateTime, server_default=db.func.now())
+

@@ -61,3 +61,23 @@ export async function postComment(alertId, author, body) {
     return res.json();
 }
   
+
+export async function loginUser(email, password) {
+    try {
+      const response = await fetch(`${API_BASE}/auth/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include", // if using cookies
+        body: JSON.stringify({ email, password }),
+      });
+  
+      const data = await response.json();
+      return { ok: response.ok, data };
+    } catch (error) {
+      console.error("Login API error:", error);
+      return { ok: false, data: { message: "Network error" } };
+    }
+  }
+  

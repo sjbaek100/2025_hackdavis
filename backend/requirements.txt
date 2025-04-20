@@ -4,4 +4,5 @@ Flask-Migrate
 psycopg2-binary
 python-dotenv
 flask-cors
+bcrypt
 requests
