@@ -1,0 +1,34 @@
+2025-04-19 21:55:26.884 PDT [89382] LOG:  starting PostgreSQL 14.17 (Homebrew) on aarch64-apple-darwin24.2.0, compiled by Apple clang version 16.0.0 (clang-1600.0.26.6), 64-bit
+2025-04-19 21:55:26.885 PDT [89382] LOG:  listening on IPv6 address "::1", port 5432
+2025-04-19 21:55:26.885 PDT [89382] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2025-04-19 21:55:26.886 PDT [89382] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2025-04-19 21:55:26.887 PDT [89383] LOG:  database system was shut down at 2025-04-19 21:54:59 PDT
+2025-04-19 21:55:26.889 PDT [89382] LOG:  database system is ready to accept connections
+2025-04-19 21:57:42.396 PDT [90284] FATAL:  role "postgres" does not exist
+2025-04-19 22:03:57.483 PDT [92872] LOG:  starting PostgreSQL 14.17 (Homebrew) on aarch64-apple-darwin24.2.0, compiled by Apple clang version 16.0.0 (clang-1600.0.26.6), 64-bit
+2025-04-19 22:03:57.484 PDT [92872] LOG:  could not bind IPv6 address "::1": Address already in use
+2025-04-19 22:03:57.484 PDT [92872] HINT:  Is another postmaster already running on port 5432? If not, wait a few seconds and retry.
+2025-04-19 22:03:57.484 PDT [92872] LOG:  could not bind IPv4 address "127.0.0.1": Address already in use
+2025-04-19 22:03:57.484 PDT [92872] HINT:  Is another postmaster already running on port 5432? If not, wait a few seconds and retry.
+2025-04-19 22:03:57.484 PDT [92872] WARNING:  could not create listen socket for "localhost"
+2025-04-19 22:03:57.484 PDT [92872] FATAL:  could not create any TCP/IP sockets
+2025-04-19 22:03:57.485 PDT [92872] LOG:  database system is shut down
+2025-04-19 22:05:33.414 PDT [93696] LOG:  starting PostgreSQL 14.17 (Homebrew) on aarch64-apple-darwin24.2.0, compiled by Apple clang version 16.0.0 (clang-1600.0.26.6), 64-bit
+2025-04-19 22:05:33.415 PDT [93696] LOG:  listening on IPv6 address "::1", port 5432
+2025-04-19 22:05:33.415 PDT [93696] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2025-04-19 22:05:33.416 PDT [93696] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2025-04-19 22:05:33.419 PDT [93697] LOG:  database system was shut down at 2025-04-19 22:03:42 PDT
+2025-04-19 22:05:33.422 PDT [93696] LOG:  database system is ready to accept connections
+2025-04-19 22:06:18.698 PDT [93965] FATAL:  role "postgres" does not exist
+2025-04-19 22:07:18.520 PDT [94377] FATAL:  role "root" does not exist
+2025-04-19 22:07:18.521 PDT [94378] FATAL:  role "root" does not exist
+2025-04-19 22:07:22.398 PDT [94488] FATAL:  role "root" does not exist
+2025-04-19 22:07:22.398 PDT [94489] FATAL:  role "root" does not exist
+2025-04-19 22:09:13.254 PDT [95151] FATAL:  role "postgres" does not exist
+2025-04-19 22:09:36.967 PDT [95306] FATAL:  database "jamiepark" does not exist
+2025-04-19 22:10:04.134 PDT [95490] FATAL:  role "postgres" does not exist
+2025-04-19 22:10:20.344 PDT [95622] FATAL:  database "jamiepark" does not exist
+2025-04-19 22:13:03.448 PDT [96985] FATAL:  database "jamiepark" does not exist
+2025-04-19 22:13:21.097 PDT [97132] FATAL:  role "postgres" does not exist
+2025-04-19 22:13:28.240 PDT [97300] FATAL:  role "postgres" does not exist
+2025-04-19 22:15:30.461 PDT [98465] FATAL:  role "postgres" does not exist
