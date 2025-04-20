@@ -75,8 +75,8 @@ main section h2 {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  width: 50px;
-  height: 50px;
+  width: 70px;
+  height: 70px;
   background-color: #022851;
   border: none;
   border-radius: 50%;
@@ -87,13 +87,13 @@ main section h2 {
 }
 
 .alert-button img {
-  width: 25px;
-  height: 25px;
+  width: 40px;
+  height: 40px;
 }
 
 
 .alert-button:hover {
-  background-color: rgb(230, 50, 50);
+  background-color: rgb(228, 40, 40);
 }
 
   
