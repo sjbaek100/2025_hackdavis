@@ -1,6 +1,8 @@
 from flask import Blueprint, request, jsonify
 from models import db, Alert, Comment
 import requests
+import smtplib
+from email.mime.text import MIMEText
 
 alert_bp = Blueprint('alerts', __name__)
 @alert_bp.route("/", methods=["POST"])
@@ -49,11 +51,16 @@ def upvote_alert(alert_id):
     alert = Alert.query.get_or_404(alert_id)
     alert.upvotes += 1
     db.session.commit()
+
+    if alert.upvotes == 30: 
+        send_alert_email(alert)
+
     return jsonify({
         "message": "Upvoted",
         "upvotes": alert.upvotes,
         "downvotes": alert.downvotes
     })
+
 
 
 
@@ -180,3 +187,28 @@ def get_disasters():
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+    
+def send_alert_email(alert):
+    subject = f"🚨 High Upvote Alert: {alert.title}"
+    body = f"""An alert has received 30+ upvotes:
+
+📌 Title: {alert.title}
+📍 Location: {alert.location}
+🗓️ Time: {alert.created_at}
+📝 Description: {alert.description}
+
+Take appropriate action if needed.
+"""
+
+    msg = MIMEText(body)
+    msg["Subject"] = subject
+    msg["From"] = "no-reply@aggiealert.com"
+    msg["To"] = "admin@yourdomain.com"  # 변경 가능
+
+    try:
+        # 기본 로컬 SMTP 서버 (예: 로컬에서 테스트할 경우)
+        with smtplib.SMTP("localhost") as server:
+            server.send_message(msg)
+        print("✅ Email sent successfully.")
+    except Exception as e:
+        print(f"❌ Failed to send email: {e}")
