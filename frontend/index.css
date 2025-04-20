@@ -13,6 +13,8 @@
   padding-left: 1.2rem;
   padding-bottom: 0.5rem;
   padding-top: 0.5rem;
+  user-select: none;
+  position:relative;
 }
 
 .sort-icon {
@@ -23,19 +25,71 @@
   margin-top: 0.4rem;
 }
 
+.sort-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+  /*border: 1px solid #ddd; */
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.sort-toggle:hover {
+  background-color: #eee;
+}
+
+.sort-menu {
+  list-style: none;
+  margin: 0;
+  padding: 10px 0;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: white;
+  width: 180px;
+  border-radius: 8px;
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 10;
+}
+
+.sort-menu.show {
+  opacity: 1;
+  transform: translateY(0) translateX(-20px);
+  pointer-events: all;
+  border: 1px solid #ddd;
+
+}
+
+.sort-menu li {
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.sort-menu li:hover {
+  background-color: #f0f0f0;
+}
+
 .toggle-group {
   display: inline-flex;
   border: 1px solid #ccc;
   border-radius: 6px;
   overflow: hidden;
-  width: 12rem;
+  width: 14rem;
+  max-height: 42px;
 }
 
 .toggle-btn {
   background-color: #f0f4ff;
   color: #022851;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
+  padding: 0.8rem 1.2rem;
   border: none;
   cursor: pointer;
   font-weight: 500;
@@ -72,10 +126,10 @@
   
 .post {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  border: 1px solid #ddd;
   border-radius: 10px;
   padding: 2rem;
   margin-top: 3.2rem !important;
-  border: 1px solid #ddd;
   padding: 2rem;
   margin-top: 2rem;
 }

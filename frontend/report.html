@@ -17,7 +17,7 @@
           <img src="images/logo.svg" class="logo-image" />
         </a>
       </div>
-      <div class="navbar-right"><a href="login.html">My Account</a></div>
+      <div class="navbar-right"><a href="login.html">👤 My Account</a></div>
     </nav>
 
     <main>
@@ -42,7 +42,12 @@
               />
             </label>
             <label
-              >Location:
+              >⏰ Time:
+              <input type="datetime-local" name="time" required />
+            </label>
+            
+            <label
+              >📍 Location:
               <input
                 type="text"
                 name="location"
@@ -52,12 +57,7 @@
             </label>
 
             <label
-              >Time:
-              <input type="datetime-local" name="time" required />
-            </label>
-
-            <label
-              >Category:
+              >📌 Category:
               <select name="category" required>
                 <option value="">Select...</option>
                 <option value="drug">Drug Activity</option>
@@ -69,7 +69,7 @@
             </label>
 
             <label
-              >Description:
+              >📄 Description:
               <textarea
                 name="description"
                 placeholder="Describe the incident..."
