@@ -27,9 +27,9 @@
       <!-- Main content goes here -->
 
       <div class="dropdown">
-        <label for="filter"> </label>
-        <select id="filter" name="filter">
-          <option disabled selected>Sort by</option>
+        <img src="images/sort-4.svg" alt="Sort Icon" class="sort-icon" />
+        <select id="filter">
+          <option disabled selected>Sort By</option>
           <option value="newest">Newest Post</option>
           <option value="most_liked">Most Liked</option>
           <option value="oldest">Oldest Post</option>
@@ -48,10 +48,21 @@
 
           <div class="post-actions">
             <button class="like-btn">
-              👍 Like <span class="like-count">0</span>
+              <img
+                src="images/thumbs-up.svg"
+                alt="Like"
+                class="reaction-icon"
+              />
+              Like <span class="like-count">0</span>
             </button>
+
             <button class="dislike-btn">
-              👎 Dislike <span class="dislike-count">0</span>
+              <img
+                src="images/thumbs-down.svg"
+                alt="Dislike"
+                class="reaction-icon"
+              />
+              Dislike <span class="dislike-count">0</span>
             </button>
           </div>
         </div>
