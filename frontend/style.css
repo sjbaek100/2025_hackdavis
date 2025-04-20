@@ -11,7 +11,7 @@ body {
   background-image: linear-gradient(90deg, #022851, #b28b00);
   /* UC Davis blue to dark yellow */
   color: white;
-  padding: 2rem 1rem;
+  padding: 1.9rem 1rem;
   /* Increased vertical padding */
   position: relative;
 }
