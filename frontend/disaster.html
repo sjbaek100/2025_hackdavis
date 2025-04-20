@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Disaster</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="disaster.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <div class="navbar-center">
+        <a href="index.html" class="logo-link">
+          Aggie Alert
+          <img src="images/logo.svg" class="logo-image" />
+        </a>
+      </div>
+      <div class="navbar-right"><a href="login.html">My Account</a></div>
+    </nav>
+    <main class="disaster-container">
+        <h2>Disaster Alerts</h2>
+        <div id="disaster-list"></div>
+      </main>
+    <!-- Optional JavaScript -->
+    <script>
+    const disasterList = [
+    {
+        type: "Earthquake",
+        location: "Sacramento",
+        magnitude: "4.7",
+        time: "2025-04-20 12:45",
+        message: "Minor tremors felt near campus. Stay alert and check structures."
+    },
+    {
+        type: "Flood",
+        location: "Davis",
+        time: "2025-04-19 09:30",
+        message: "Low-level flood warning issued for Putah Creek. Avoid the area."
+    },
+    {
+        type: "Fire",
+        location: "South Campus Housing",
+        time: "2025-04-18 17:20",
+        message: "Small wildfire contained. No injuries. Remain cautious."
+    }
+    ];
+
+    const container = document.getElementById("disaster-list");
+
+    disasterList.forEach((disaster) => {
+    const card = document.createElement("div");
+    card.className = "alert-card";
+
+    card.innerHTML = `
+        <h3> ${disaster.type}</h3>
+        <p><strong>Location:</strong> ${disaster.location}</p>
+        ${disaster.magnitude ? `<p><strong>Magnitude:</strong> ${disaster.magnitude}</p>` : ""}
+        <p><strong>Time:</strong> ${disaster.time}</p>
+        <p>${disaster.message}</p>
+    `;
+
+    container.appendChild(card);
+    });
+
+    </script>
+  </body>
+</html>
