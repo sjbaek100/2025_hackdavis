@@ -8,7 +8,6 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="index.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
 </head>
 
 <body>
@@ -24,10 +23,14 @@
 
 
     <div class="dropdown">
-      <label for="filter">Sort by:</label>
+      <label for="filter">
+   
+          </label>        
       <select id="filter" name="filter">
-        <option value="most_recent">Most Recent</option>
-        <option value="most_liked">Most Liked</option>
+            <option disabled selected>Sort by  🔽</option>
+          <option value="newest">Newest Post</option>
+        <option value="most_liked">Most Liked</option>         
+          <option value="oldest">Oldest Post</option>
       </select>
     </div>
 
@@ -68,13 +71,13 @@
 
 
 
-  <a href="post.html">
+  <a href="report.html">
     <button class="alert-button">
       <img src="images/logo.svg" class="alert-icon"></button>
   </a>
 
   <!-- Optional JavaScript -->
-  <script src="index.js"></script>
+  <script type="module" src="index.js"></script>
 </body>
 
 </html>

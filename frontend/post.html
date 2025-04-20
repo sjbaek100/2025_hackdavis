@@ -1,38 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Report Details</title>
-    <link rel="stylesheet" href="post.css"/>
-    <link rel="stylesheet" href="style.css"/>
-</head>
-<body>
+    <link rel="stylesheet" href="post.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
     <nav class="navbar">
-        <div class="navbar-center"><a href="index.html">Aggie Alert</a></div>
-        <div class="navbar-right"><a href="#">My Account</a></div>
+      <div class="navbar-center"><a href="index.html">Aggie Alert</a></div>
+      <div class="navbar-right"><a href="#">My Account</a></div>
     </nav>
 
-<main>
-    <section class="report-detail">
-        <h2>{{ report.title }}</h2>
-        
-        <p><strong>Time:</strong> {{ report.time }}</p>
-        <p><strong>Location:</strong> {{ report.location }}</p>
-        <p><strong>Category:</strong> {{ report.category }}</p>
-        <p><strong>Description:</strong><br>{{ report.description }}</p>
-        
-        {% if report.photo %}
-        <div>
-            <strong>Uploaded Photo:</strong><br>
-            <img src="{{ url_for('static', filename=report.photo) }}" alt="photo" style="max-width: 100%; border: 1px solid #ccc; border-radius: 8px; margin-top: 10px;" />
-        </div>
-        {% endif %}
-        <div class="post-actions">
-            <button class="like-btn">👍 Like <span class="like-count">0</span></button>
-            <button class="dislike-btn">👎 Dislike <span class="dislike-count">0</span></button>
-        </div>
-        <div class="comment-section">
+    <main>
+      <section id="report-detail" class="report-detail">
+        <!-- Filled by JavaScript -->
+          <div class="comment-section">
           <h3>Comments</h3>
 
           <div class="comment-input">
@@ -43,8 +27,10 @@
           <ul id="commentList"></ul>
         </div>
     </section>
-</main>
-    <script>
+    </main>
+
+    <script type="module" src="post.js"></script>
+      <script>
         //dummy data
         const currentUserEmail = "akjekjie@gmail.com"; 
 

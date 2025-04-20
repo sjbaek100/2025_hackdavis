@@ -2,7 +2,6 @@ from flask import Blueprint, request, jsonify
 from models import db, Alert
 
 alert_bp = Blueprint('alerts', __name__)
-
 @alert_bp.route("/", methods=["POST"])
 def create_alert():
     data = request.get_json()
@@ -37,7 +36,9 @@ def get_alerts():
             "location": a.location,
             "category": a.category,
             "posted_by": a.posted_by,
-            "image_url": a.image_url
+            "image_url": a.image_url,
+            "upvotes": a.upvotes,
+            "downvotes": a.downvotes
         } for a in alerts
     ])
 
@@ -47,7 +48,12 @@ def upvote_alert(alert_id):
     alert = Alert.query.get_or_404(alert_id)
     alert.upvotes += 1
     db.session.commit()
-    return jsonify({"message": "Upvoted", "upvotes": alert.upvotes})
+    return jsonify({
+        "message": "Upvoted",
+        "upvotes": alert.upvotes,
+        "downvotes": alert.downvotes
+    })
+
 
 
 @alert_bp.route("/<int:alert_id>/downvote", methods=["POST"])
@@ -55,4 +61,23 @@ def downvote_alert(alert_id):
     alert = Alert.query.get_or_404(alert_id)
     alert.downvotes += 1
     db.session.commit()
-    return jsonify({"message": "Downvoted", "downvotes": alert.downvotes})
+    return jsonify({
+        "message": "Downvoted",
+        "upvotes": alert.upvotes,
+        "downvotes": alert.downvotes
+    })
+
+
+@alert_bp.route("/<int:alert_id>/remove_vote", methods=["POST"])
+def remove_vote(alert_id):
+    data = request.get_json()
+    vote_type = data.get("type")
+    alert = Alert.query.get_or_404(alert_id)
+
+    if vote_type == "up":
+        alert.upvotes = max(0, alert.upvotes - 1)
+    elif vote_type == "down":
+        alert.downvotes = max(0, alert.downvotes - 1)
+
+    db.session.commit()
+    return jsonify({"upvotes": alert.upvotes, "downvotes": alert.downvotes})
