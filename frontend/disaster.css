@@ -12,6 +12,8 @@
     border-radius: 6px;
     overflow: hidden;
     width: 14rem;
+    margin-top: 0.5rem;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
 }
 
 .toggle-btn {
@@ -32,7 +34,7 @@
 }
 
 .toggle-btn.active {
-    background-color: rgb(171, 197, 245);
+    background-color: #dfca7dd1;
     font-weight: bold;
 }
 
