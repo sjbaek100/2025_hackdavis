@@ -1,11 +1,30 @@
-
-
 .dropdown{
     margin-top: 20px;
     margin-left: 40px;
     margin-bottom: 20px;
 }
 
+/* Style for the select dropdown */
+#filter {
+    padding: 10px 10px;
+    font-size: 13px;
+    color: white;
+    background-color: #022851;
+    border-radius: 8px;
+    appearance: none; /* Remove default arrow */
+    text-align: center;          /* Centers the displayed selected option */
+    text-align-last: center;
+  }
+  
+
+.sort-icon {
+    width: 16px;
+    height: 16px;
+    margin-left: 6px;
+    vertical-align: middle;
+    opacity: 0.7;
+  }
+  
 .alert-button {
     position: fixed;
     bottom: 20px;
@@ -29,7 +48,7 @@
 
   
   .post {
-    background-color: white;
+    background: white;
     padding: 15px;
     margin-bottom: 20px;
     border: 1px solid #ddd;
@@ -37,6 +56,8 @@
     margin-left: 40px;
     margin-right: 40px;
     max-height: 300px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Shadow: 0px horizontally, 4px vertically, 6px blur, 20% opacity */
+
   }
 
   .post h2{
