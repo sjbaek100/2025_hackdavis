@@ -124,6 +124,29 @@
       });
 
     </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const loggedIn = localStorage.getItem("loggedIn") === "true";
+        const email = localStorage.getItem("userEmail");
+    
+        if (loggedIn) {
+          document.querySelector(".navbar-right").innerHTML = `
+            <span>👤 Logged in as ${email}</span>
+            <a href="#" id="logoutBtn">Logout</a>
+          `;
+        }
+    
+        // Handle logout
+        const logoutBtn = document.getElementById("logoutBtn");
+        if (logoutBtn) {
+          logoutBtn.addEventListener("click", () => {
+            localStorage.removeItem("loggedIn");
+            localStorage.removeItem("userEmail");
+            location.reload(); // or redirect to login
+          });
+        }
+      });
+    </script>
     
   </body>
 </html>
