@@ -53,9 +53,30 @@
 }
 
 
-.like-btn:hover .like-icon,
-.dislike-btn:hover .dislike-icon {
-  filter: brightness(0) saturate(100%) invert(0%);
+.like-btn:hover img,.like-btn:hover .like-count,
+.dislike-btn:hover img ,.dislike-btn:hover .dislike-count {
+  filter: invert(56%) sepia(67%) saturate(748%) hue-rotate(191deg) brightness(101%) contrast(95%);
+  color: rgb(116, 162, 247);
+}
+
+.like-btn.voted {
+  font-weight: bold;
+  border-radius: 6px;
+  color:rgb(116, 162, 247);
+}
+
+.dislike-btn.voted {
+  font-weight: bold;
+  border-radius: 6px;
+  color:rgb(116, 162, 247);
+}
+
+.like-btn.voted img {
+  filter: invert(56%) sepia(67%) saturate(748%) hue-rotate(191deg) brightness(101%) contrast(95%);
+}
+
+.dislike-btn.voted img {
+  filter: invert(56%) sepia(67%) saturate(748%) hue-rotate(191deg) brightness(101%) contrast(95%);
 }
 
 

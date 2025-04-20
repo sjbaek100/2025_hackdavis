@@ -1,5 +1,8 @@
 from flask import Blueprint, request, jsonify
 from models import db, Alert, Comment
+import requests
+import smtplib
+from email.mime.text import MIMEText
 
 alert_bp = Blueprint('alerts', __name__)
 @alert_bp.route("/", methods=["POST"])
@@ -48,11 +51,16 @@ def upvote_alert(alert_id):
     alert = Alert.query.get_or_404(alert_id)
     alert.upvotes += 1
     db.session.commit()
+
+    if alert.upvotes == 30: 
+        send_alert_email(alert)
+
     return jsonify({
         "message": "Upvoted",
         "upvotes": alert.upvotes,
         "downvotes": alert.downvotes
     })
+
 
 
 
@@ -87,7 +95,7 @@ def remove_vote(alert_id):
 def get_comments(alert_id):
     Alert.query.get_or_404(alert_id)
     comments = Comment.query.filter_by(alert_id=alert_id)\
-                             .order_by(Comment.created_at).all()
+                            .order_by(Comment.created_at).all()
     return jsonify([
         {
             "id": c.id,
@@ -117,3 +125,90 @@ def add_comment(alert_id):
         "body": comment.body,
         "created_at": comment.created_at.isoformat()
     }), 201
+    
+    # 여기부턴 내가
+@alert_bp.route("/api/disasters")
+def get_disasters():
+    try:
+        all_disasters = []
+
+        ### 1. Earthquake (USGS)
+        eq_url = "https://earthquake.usgs.gov/fdsnws/event/1/query"
+        eq_params = {
+            "format": "geojson",
+            "latitude": 38.5449,
+            "longitude": -121.7405,
+            "maxradiuskm": 80,
+            "orderby": "time",
+            "limit": 3
+        }
+        eq_data = requests.get(eq_url, params=eq_params).json()
+
+        for feature in eq_data.get("features", []):
+            props = feature.get("properties", {})
+            all_disasters.append({
+                "type": "Earthquake",
+                "location": props.get("place", "Unknown"),
+                "time": props.get("time", "Unknown"),
+                "magnitude": props.get("mag", "N/A"),
+                "message": f"Magnitude {props.get('mag', '?')} earthquake in {props.get('place', '?')}"
+            })
+
+        ### 2. FEMA Disasters (filtered by state = CA)
+        fema_url = "https://www.fema.gov/api/open/v2/DisasterDeclarationsSummaries"
+        fema_params = {
+            "$filter": "state eq 'CA'",
+            "$orderby": "declarationDate desc",
+            "$top": 5
+        }
+        fema_data = requests.get(fema_url, params=fema_params).json()
+        for item in fema_data.get("DisasterDeclarationsSummaries", []):
+            all_disasters.append({
+                "type": item.get("incidentType", "Disaster"),
+                "location": item.get("designatedArea", "California"),
+                "time": item.get("declarationDate", "Unknown"),
+                "message": f"{item.get('incidentType')} in {item.get('designatedArea', 'California')}"
+            })
+
+        ### 3. National Weather Alerts (NWS)
+        nws_url = "https://api.weather.gov/alerts/active"
+        nws_params = {"point": "38.5449,-121.7405"}
+        nws_data = requests.get(nws_url, params=nws_params).json()
+        for feature in nws_data.get("features", []):
+            props = feature.get("properties", {})
+            all_disasters.append({
+                "type": props.get("event", "Weather Alert"),
+                "location": props.get("areaDesc", "Unknown area"),
+                "time": props.get("onset", "Unknown"),
+                "message": props.get("headline", "Weather alert in your area")
+            })
+
+        return jsonify(all_disasters)
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+    
+def send_alert_email(alert):
+    subject = f"🚨 High Upvote Alert: {alert.title}"
+    body = f"""An alert has received 30+ upvotes:
+
+📌 Title: {alert.title}
+📍 Location: {alert.location}
+🗓️ Time: {alert.created_at}
+📝 Description: {alert.description}
+
+Take appropriate action if needed.
+"""
+
+    msg = MIMEText(body)
+    msg["Subject"] = subject
+    msg["From"] = "no-reply@aggiealert.com"
+    msg["To"] = "admin@yourdomain.com"  # 변경 가능
+
+    try:
+        # 기본 로컬 SMTP 서버 (예: 로컬에서 테스트할 경우)
+        with smtplib.SMTP("localhost") as server:
+            server.send_message(msg)
+        print("✅ Email sent successfully.")
+    except Exception as e:
+        print(f"❌ Failed to send email: {e}")

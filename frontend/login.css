@@ -19,7 +19,7 @@
 
 .login-form input[type="email"],
 .login-form input[type="password"] {
-    width: 100%;
+    width: 98%;
     padding: 0.6rem;
     margin-bottom: 1rem;
     border: 1px solid #ccc;
@@ -39,13 +39,15 @@
     background-color: #022851;
     color: white;
     font-weight: bold;
-    border: none;
+    border: 1.5px solid  #022851;
     border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .login-form button:hover {
-    background-color: #011d3e;
+    background-color: #011d3ec3;
+    border: 1.5px solid  #022851;
 }
 
 .login-form a {
@@ -56,4 +58,5 @@
 
 .login-form a:hover {
     text-decoration: underline;
+    color:#011d3e90;
 }
