@@ -22,9 +22,9 @@
       </div>
       <div class="navbar-right"><a href="login.html">My Account</a></div>
     </nav>
-
-    <main>
+    <main class="postings-container">
       <!-- Main content goes here -->
+      <div class="group">
       <div class="toggle-group">
         <button class="toggle-btn" id="alertBtn">Alert</button>
         <button class="toggle-btn" id="disasterBtn">Disaster</button>
@@ -38,8 +38,7 @@
           <option value="oldest">Oldest Post</option>
         </select>
       </div>
-
-      <div id="postings-container">
+    </div>
         <div class="post">
           <h2>{{ report.title }}</h2>
           <p class="Time">{{ report.time }}</p>
@@ -56,7 +55,7 @@
                 alt="Like"
                 class="reaction-icon"
               />
-              Like <span class="like-count">0</span>
+              <span class="like-count">0</span>
             </button>
 
             <button class="dislike-btn">
@@ -65,45 +64,7 @@
                 alt="Dislike"
                 class="reaction-icon"
               />
-              Dislike <span class="dislike-count">0</span>
-            </button>
-          </div>
-        </div>
-
-        <div class="post">
-          <h2>Post Title 2</h2>
-          <p class="Time">MM-DD-YYYY 00:00</p>
-          <p class="Location-category">
-            Location: Target Category: Suspicious Activity
-          </p>
-          <p class="Description">
-            Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque
-            faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi
-            pretium tellus duis convallis. Tempus leo eu aenean sed diam urna
-            tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas.
-            Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut
-            hendrerit semper vel class aptent taciti sociosqu. Ad litora
-            torquent per conubia nostra inceptos himenaeos.
-          </p>
-          <a href="post.html">Read More</a>
-
-          <div class="post-actions">
-            <button class="like-btn">
-              <img
-                src="images/thumbs-up.svg"
-                alt="Like"
-                class="reaction-icon"
-              />
-              Like <span class="like-count">0</span>
-            </button>
-
-            <button class="dislike-btn">
-              <img
-                src="images/thumbs-down.svg"
-                alt="Dislike"
-                class="reaction-icon"
-              />
-              Dislike <span class="dislike-count">0</span>
+              <span class="dislike-count">0</span>
             </button>
           </div>
         </div>
