@@ -92,6 +92,29 @@ background-color: rgb(255, 0, 0);
 background-color: rgb(255, 0, 0);
 }
 
+  
+
+.like-btn.voted {
+    background-color: #c8f8dc;
+    font-weight: bold;
+    border-radius: 6px;
+}
+  
+.dislike-btn.voted {
+    background-color: #ffd3d3;
+    font-weight: bold;
+    border-radius: 6px;
+}
+  
+
+.like-btn:hover {
+    background-color: rgb(0, 255, 0);
+  }
+  
+.dislike-btn:hover {
+background-color: rgb(255, 0, 0);
+}
+
 
 .comment-section {
 margin-top: 2rem;
