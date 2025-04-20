@@ -16,13 +16,12 @@
         <img src="images/logo.svg" class="logo-image" />
       </a>
     </div>
-    <div class="navbar-right"><a href="login.html">My Account</a></div>
+    <div class="navbar-right"><a href="login.html">👤 My Account</a></div>
   </nav>
 
   <main>
     <section id="report-detail" class="report-detail">
       <h2>Loading Report Title...</h2>
-
       <p><strong>Time:</strong> --</p>
       <p><strong>Location:</strong> --</p>
       <p><strong>Category:</strong> --</p>
@@ -66,10 +65,10 @@
     </section>
   </main>
 
-  <!-- Your JS logic will fully replace the above on load -->
+  <!-- JS that will replace the static content on load -->
   <script type="module" src="post.js"></script>
 
-  <!-- Dummy local comment handler for fallback testing -->
+  <!-- Dummy comment logic for testing -->
   <script>
     const currentUserEmail = "akjekjie@gmail.com";
 
@@ -84,7 +83,6 @@
       const item = document.createElement("li");
       item.innerHTML = `<strong>${currentUserEmail}</strong>: ${comment}`;
       list.appendChild(item);
-
       document.getElementById("commentBox").value = "";
     }
   </script>

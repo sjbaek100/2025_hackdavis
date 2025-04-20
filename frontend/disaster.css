@@ -1,7 +1,36 @@
 .disaster-container {
     margin: 2rem ;
     padding: 1rem;
+}
 
+
+.toggle-group {
+    display: inline-flex;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    overflow: hidden;
+    width: 14rem;
+}
+
+.toggle-btn {
+    background-color: #f0f4ff;
+    color: #022851;
+    padding: 0.8rem 1.2rem;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background 0.2s;
+    width : 50%;
+    text-align: center;
+}
+
+.toggle-btn:hover {
+    background-color: #e0eaff;
+}
+
+.toggle-btn.active {
+    background-color: rgb(171, 197, 245);
+    font-weight: bold;
 }
 
 .alert-box {
@@ -50,37 +79,33 @@ ul {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
     padding: 2rem;
-    margin-top: 2rem;
+    margin-top: 3.2rem !important;
     border: 1px solid #ddd;
+    padding: 2rem;
+    margin-top: 2rem;
 }
 
+@media screen and (max-width: 450px) {
 
-.toggle-group {
-    display: inline-flex;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    overflow: hidden;
-    width: 12rem;
-  }
-  
-  .toggle-btn {
-    background-color: #f0f4ff;
-    color: #022851;
-    padding: 0.5rem 1.2rem;
-    border: none;
-    cursor: pointer;
-    font-weight: 500;
-    transition: background 0.2s;
-    width:50%;
-    text-align: center;
-  }
-  
-  .toggle-btn:hover {
-    background-color: #e0eaff;
-  }
-  
-  .toggle-btn.active {
-    background-color: rgb(171, 197, 245);
-    font-weight: bold;
-  }
-  
+    .toggle-group {
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        width: 10rem;
+    }
+    
+    .toggle-btn {
+        padding: 0.5rem 1.2rem;
+        font-weight: 300;
+        width : 50%;
+        font-size: 10px;
+    
+    }
+    
+    .toggle-btn:hover {
+        background-color: #e0eaff;
+    }
+    
+    .toggle-btn.active {
+        background-color: rgb(171, 197, 245);
+    }
+}

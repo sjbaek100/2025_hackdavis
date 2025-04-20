@@ -1,24 +1,115 @@
+.postings-container {
+  margin: 2rem;
+  padding: 1rem;
+}
+
+.group{
+  display: flex;
+  justify-content: space-between;
+}
 .dropdown {
-    display: inline-flex;
-    align-items: center;
-    position: relative;
-    margin-left: 40px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-  }
+  display: inline-flex;
+  margin-left: 12rem;
+  padding-left: 1.2rem;
+  padding-bottom: 0.5rem;
+  padding-top: 0.5rem;
+  user-select: none;
+  position:relative;
+}
 
-
-/* Style for the sort by dropdown */
 .sort-icon {
-    width: 20px;
-    height: 20px;
-    opacity: 0.7;
-    margin-right: -5px;
-    margin-bottom: 2px;
+  width: 20px;
+  height: 20px;
+  opacity: 0.7;
+  margin-right: -5px;
+  margin-top: 0.4rem;
+}
+
+.sort-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+  /*border: 1px solid #ddd; */
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.sort-toggle:hover {
+  background-color: #eee;
+}
+
+.sort-menu {
+  list-style: none;
+  margin: 0;
+  padding: 10px 0;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: white;
+  width: 180px;
+  border-radius: 8px;
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 10;
+}
+
+.sort-menu.show {
+  opacity: 1;
+  transform: translateY(0) translateX(-20px);
+  pointer-events: all;
+  border: 1px solid #ddd;
+
+}
+
+.sort-menu li {
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.sort-menu li:hover {
+  background-color: #f0f0f0;
+}
+
+.toggle-group {
+  display: inline-flex;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  overflow: hidden;
+  width: 14rem;
+  max-height: 42px;
+}
+
+.toggle-btn {
+  background-color: #f0f4ff;
+  color: #022851;
+  padding: 0.8rem 1.2rem;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.2s;
+  width : 50%;
+  text-align: center;
+}
+
+.toggle-btn:hover {
+  background-color: #e0eaff;
+}
+
+.toggle-btn.active {
+  background-color: rgb(171, 197, 245);
+  font-weight: bold;
 }
 
 #filter {
-  padding: 10px;
+  padding-left: 10px;
+  margin-top: 0.4rem;
   font-size: 14px;
   color: black;
   appearance: none;
@@ -34,31 +125,38 @@
   }
   
 .post {
-    background: white;
-    padding: 1rem;
-    margin: 2rem;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    /* Shadow: 0px horizontally, 4px vertically, 6px blur, 20% opacity */
-  
-  }
-  
-  .post h2 {
-    margin-bottom: 0px;
-  }
-  
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 2rem;
+  margin-top: 3.2rem !important;
+  padding: 2rem;
+  margin-top: 2rem;
+}
+
+.post a:hover{
+  color:#ABC5F5;
+}
+
+.post a{
+  color:#506f92;
+}
+
+.post h2 {
+  font-size:1.17em;
+}
+
 
 .like-btn.voted {
-  background-color: #c8f8dc;
   font-weight: bold;
   border-radius: 6px;
+  color:rgb(171, 197, 245);
 }
 
 .dislike-btn.voted {
-  background-color: #ffd3d3;
   font-weight: bold;
   border-radius: 6px;
+
 }
 
 .like-btn.voted img {
@@ -71,13 +169,11 @@
 
 .Time {
   color: gray;
-  margin-bottom: -10px;
   font-size: small;
 }
 
 .Location-category {
   color: gray;
-  margin-bottom: -10px;
   font-size: small;
 }
 
@@ -87,15 +183,16 @@
   display: -webkit-box;
   -webkit-box-orient: vertical;
   max-height: 6em;
-  /* adjust based on line height */
+  margin-top: 2rem;
 }
 
-
-/* Actions at bottom of post */
 .post-actions {
   display: flex;
   justify-content: flex-end;
-  gap: 10px;
+}
+
+.like-count{
+  padding-top: 0.3rem;
 }
 
 .like-btn,
@@ -107,99 +204,86 @@
   font-size: 14px;
   color: black;
   background-color: white;
+  display: flex;
+  gap:0.3rem;
+}
+
+.dislike-btn{
+  padding-top: 10px;
 }
 
 .reaction-icon {
-    width: 20px;
-    height: 20px;
-    transition: filter 0.2s ease;
-
-    filter: brightness(0) saturate(100%); /* base: black */
-  }
-
-  
-  /* Turn fully black on hover */
-  .like-btn:hover .like-icon,
-  .dislike-btn:hover .dislike-icon {
-    filter: brightness(0) saturate(100%) invert(0%);
-  }
-  
-
-
-.alert-button {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 70px;
-    height: 70px;
-    background-color: #022851;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-    transition: background-color 0.3s ease;
-  }
-  
-  .alert-button img {
-    width: 40px;
-    height: 40px;
-  }
-  
-  
-  .alert-button:hover {
-    background-color: rgb(228, 40, 40);
-  }
-  
-  
-  
-
-@media screen and (max-width: 430px) {
-  .post {
-    margin: 10px;
-    padding: 12px;
-  }
-
-  .alert-button {
-    width: 45px;
-    height: 45px;
-    font-size: 22px;
-    bottom: 15px;
-    right: 15px;
-  }
-
-  .like-btn,
-  .dislike-btn {
-    padding: 10px;
-    font-size: 13px;
-    min-width: 100px;
-  }
-
-  .post-actions {
-    flex-direction: column;
-    align-items: stretch;
-  }
+  width: 20px;
+  height: 20px;
+  transition: filter 0.2s ease;
+  filter: brightness(0) saturate(100%); /* base: black */
 }
 
+
+.like-btn:hover .like-icon,
+.dislike-btn:hover .dislike-icon {
+  filter: brightness(0) saturate(100%) invert(0%);
+}
+
+.alert-button {
+  position: fixed;
+  left:90%;
+  width: 70px;
+  height: 70px;
+  background-color: #022851;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  transition: background-color 0.3s ease;
+}
+
+.alert-button:hover {
+  background-color: #a30000;
+}
+
+.alert-button img {
+  width: 40px;
+  height: 40px;
+}
+
+
+@media screen and (max-width: 450px) {
+.post {
+  padding: 2rem;
+}
+
+.alert-button {
+  width: 45px;
+  height: 45px;
+  font-size: 22px;
+  bottom: 15px;
+}
+
+.like-btn,
+.dislike-btn {
+  padding: 10px;
+  font-size: 13px;
+}
+
+.post-actions {
+  display: flex;
+}
 .toggle-group {
-  display: inline-flex;
   border: 1px solid #ccc;
   border-radius: 6px;
-  overflow: hidden;
-  margin-left: 2.6rem;
-  width: 12rem;
+  width: 10rem;
+  max-height: 28px;
 }
 
 .toggle-btn {
-  background-color: #f0f4ff;
-  color: #022851;
-  padding: 0.5rem 1.2rem;
-  border: none;
-  cursor: pointer;
-  font-weight: 500;
-  transition: background 0.2s;
-  width:50%;
-  text-align: center;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  font-weight: 300;
+  width : 50%;
+  font-size: 10px;
+
 }
 
 .toggle-btn:hover {
@@ -208,5 +292,10 @@
 
 .toggle-btn.active {
   background-color: rgb(171, 197, 245);
-  font-weight: bold;
+}
+
+.dropdown {
+  display: inline-flex;
+  margin-left: 1.70rem;
+}
 }
