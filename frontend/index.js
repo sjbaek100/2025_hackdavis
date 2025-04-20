@@ -16,9 +16,16 @@ function renderPosts(postList) {
       <p class="Description">${report.description}</p>
       <a href="post.html?id=${report.id}">Read More</a>
       <div class="post-actions">
-        <button class="like-btn">👍 Like <span class="like-count">${report.upvotes}</span></button>
-        <button class="dislike-btn">👎 Dislike <span class="dislike-count">${report.downvotes}</span></button>
-      </div>
+        <button class="like-btn">
+          <img src="images/thumbs-up.svg" alt="Like" class="reaction-icon" />
+          Like <span class="like-count">${report.upvotes}</span>
+        </button>
+
+        <button class="dislike-btn">
+          <img src="images/thumbs-down.svg" alt="Dislike" class="reaction-icon" />
+          Dislike <span class="dislike-count">${report.downvotes}</span>
+        </button>
+      </div>      
     `;
 
     const likeBtn = post.querySelector('.like-btn');

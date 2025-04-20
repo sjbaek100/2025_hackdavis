@@ -11,10 +11,13 @@
   </head>
   <body>
     <nav class="navbar">
-
-      <div class="navbar-center"><a href="index.html">
-        Aggie Alert</div>
-      <div class="navbar-right"><a href="#">My Account</a></div>
+      <div class="navbar-center">
+        <a href="index.html" class="logo-link">
+          Aggie Alert
+          <img src="images/logo.svg" class="logo-image" />
+        </a>
+      </div>
+      <div class="navbar-right"><a href="login.html">My Account</a></div>
     </nav>
 
     <main>
@@ -22,19 +25,39 @@
       <section>
         <div class="report">
           <h2>Report Suspicious Activity</h2>
-          <form action="/report" method="POST" enctype="multipart/form-data" class="report-form" onsubmit="return confirmSubmit()">
-            <label>Title:
-              <input type="text" name="location" placeholder="e.g. Suspicious Acivity" required />
+          <form
+            action="/report"
+            method="POST"
+            enctype="multipart/form-data"
+            class="report-form"
+            onsubmit="return confirmSubmit()"
+          >
+            <label
+              >Title:
+              <input
+                type="text"
+                name="title"
+                placeholder="e.g. Suspicious Acivity"
+                required
+              />
             </label>
-            <label>Location:
-              <input type="text" name="location" placeholder="e.g. MU entrance" required />
+            <label
+              >Location:
+              <input
+                type="text"
+                name="location"
+                placeholder="e.g. MU entrance"
+                required
+              />
             </label>
-        
-            <label>Time:
+
+            <label
+              >Time:
               <input type="datetime-local" name="time" required />
             </label>
 
-            <label>Category:
+            <label
+              >Category:
               <select name="category" required>
                 <option value="">Select...</option>
                 <option value="drug">Drug Activity</option>
@@ -44,16 +67,20 @@
                 <option value="other">Other</option>
               </select>
             </label>
-        
-            <label>Description:
-              <textarea name="description" placeholder="Describe the incident..." required></textarea>
-            </label>
-              
-            <label>Upload Photo (optional):
-              <input type="file" name="photo" accept="image/*" />
+
+            <label
+              >Description:
+              <textarea
+                name="description"
+                placeholder="Describe the incident..."
+                required
+              ></textarea>
             </label>
 
-            <button type="cancel" onclick="window.history.back();">Cancel</button>
+
+            <button type="cancel" onclick="window.history.back();">
+              Cancel
+            </button>
             <button type="submit">Submit Report</button>
           </form>
         </div>
@@ -62,8 +89,11 @@
 
     <script>
       function confirmSubmit() {
-        return confirm("Please ensure your report does not target any individual or contain language that could be offensive to any race, religion, culture, or ethnicity.\nIf you believe someone is in immediate danger, please call 911 right away.");
+        return confirm(
+          "Please ensure your report does not target any individual or contain language that could be offensive to any race, religion, culture, or ethnicity.\nIf you believe someone is in immediate danger, please call 911 right away."
+        );
       }
     </script>
+    <script type="module" src="report.js"></script>
   </body>
-</html>
+  </html>

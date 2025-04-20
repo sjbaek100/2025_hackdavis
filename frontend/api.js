@@ -2,16 +2,17 @@ const API_BASE = "http://127.0.0.1:5000"; // or your deployed backend URL
 
 // POST a new suspicious person report
 export async function submitReport(reportData) {
-  const response = await fetch(`${API_BASE}/report`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(reportData),
-  });
-
-  return response.json();
-}
+    const response = await fetch(`${API_BASE}/alerts/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(reportData),
+    });
+  
+    return response.json();
+  }
+  
 
 // Upvote a report
 export async function upvoteReport(reportId) {

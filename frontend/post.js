@@ -1,5 +1,4 @@
-import { fetchReports, upvoteReport, downvoteReport, removeVote,
-    fetchComments, postComment } from "./api.js";
+import { fetchReports, upvoteReport, downvoteReport, removeVote, fetchComments, postComment } from "./api.js";
 
 const container = document.getElementById("report-detail");
 const params = new URLSearchParams(window.location.search);
@@ -21,11 +20,23 @@ async function renderReport() {
     <p><strong>Location:</strong> ${report.location}</p>
     <p><strong>Category:</strong> ${report.category}</p>
     <p><strong>Description:</strong><br>${report.description}</p>
-    ${report.image_url ? `<div><strong>Uploaded Photo:</strong><br><img src="${report.image_url}" alt="photo" class="detail-image" /></div>` : ''}
-    
+    ${report.image_url ? `
+      <div>
+        <strong>Uploaded Photo:</strong><br>
+        <img src="${report.image_url}" alt="photo" class="detail-image"/>
+      </div>` : ''
+    }
+
     <div class="post-actions">
-      <button class="like-btn">👍 Like <span class="like-count">${report.upvotes}</span></button>
-      <button class="dislike-btn">👎 Dislike <span class="dislike-count">${report.downvotes}</span></button>
+      <button class="like-btn">
+        <img src="images/thumbs-up.svg" alt="Like" class="reaction-icon" />
+        Like <span class="like-count">${report.upvotes}</span>
+      </button>
+
+      <button class="dislike-btn">
+        <img src="images/thumbs-down.svg" alt="Dislike" class="reaction-icon" />
+        Dislike <span class="dislike-count">${report.downvotes}</span>
+      </button>
     </div>
 
     <div class="comment-section">
@@ -49,7 +60,7 @@ async function renderReport() {
   if (currentVote === "up") likeBtn.classList.add("voted");
   if (currentVote === "down") dislikeBtn.classList.add("voted");
 
-  likeBtn.addEventListener('click', async () => {
+  likeBtn.addEventListener("click", async () => {
     if (localStorage.getItem(voteKey) === "up") {
       const updated = await removeVote(report.id, "up");
       report.upvotes = updated.upvotes;
@@ -69,7 +80,7 @@ async function renderReport() {
     dislikeCount.textContent = report.downvotes;
   });
 
-  dislikeBtn.addEventListener('click', async () => {
+  dislikeBtn.addEventListener("click", async () => {
     if (localStorage.getItem(voteKey) === "down") {
       const updated = await removeVote(report.id, "down");
       report.upvotes = updated.upvotes;
@@ -89,7 +100,7 @@ async function renderReport() {
     dislikeCount.textContent = report.downvotes;
   });
 
-  // 💬 Comment logic
+  // Comments
   const commentList = container.querySelector("#commentList");
   const commentBox = container.querySelector("#commentBox");
   const submitBtn = container.querySelector("#submitCommentBtn");
@@ -111,7 +122,5 @@ async function renderReport() {
     commentList.appendChild(li);
   }
 }
-
-
 
 document.addEventListener("DOMContentLoaded", renderReport);

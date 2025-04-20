@@ -1,38 +1,52 @@
-main section h2 {
-    text-align: center;
-    font-size: 40px;
-}
-
-
 .dropdown {
-  margin-top: 20px;
-  margin-left: 40px;
-  margin-bottom: 20px;
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    margin-left: 40px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+
+/* Style for the sort by dropdown */
+.sort-icon {
+    width: 20px;
+    height: 20px;
+    opacity: 0.7;
+    margin-right: -5px;
+    margin-bottom: 2px;
 }
 
-
-
-
-/* Style for the select dropdown */
 #filter {
-    padding: 10px 10px;
-    font-size: 13px;
-    color: white;
-    background-color: #022851;
-    border-radius: 8px;
-    appearance: none; /* Remove default arrow */
-    text-align: center;          /* Centers the displayed selected option */
-    text-align-last: center;
+  padding: 10px;
+  font-size: 14px;
+  color: black;
+  appearance: none;
+  text-align: left;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+#filter:focus {
+    outline: none;
+    box-shadow: none;
   }
   
-
-.sort-icon {
-    width: 16px;
-    height: 16px;
-    margin-left: 6px;
-    vertical-align: middle;
-    opacity: 0.7;
-}
+.post {
+    background: white;
+    padding: 1rem;
+    margin: 2rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    /* Shadow: 0px horizontally, 4px vertically, 6px blur, 20% opacity */
+  
+  }
+  
+  .post h2 {
+    margin-bottom: 0px;
+  }
   
 
 .like-btn.voted {
@@ -47,87 +61,12 @@ main section h2 {
   border-radius: 6px;
 }
 
-
-/* Style for the select dropdown */
-#filter {
-  padding: 10px 10px;
-  font-size: 13px;
-  color: white;
-  background-color: #022851;
-  border-radius: 8px;
-  appearance: none;
-  /* Remove default arrow */
-  text-align: center;
-  /* Centers the displayed selected option */
-  text-align-last: center;
+.like-btn.voted img {
+  filter: invert(51%) sepia(98%) saturate(459%) hue-rotate(76deg) brightness(96%) contrast(89%);
 }
 
-
-.sort-icon {
-  width: 16px;
-  height: 16px;
-  margin-left: 6px;
-  vertical-align: middle;
-  opacity: 0.7;
-}
-
-.alert-button {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 50px;
-  height: 50px;
-  background-color: #022851;
-
-  border: none;
-  border-radius: 50%;
-  font-size: 40px;
-  cursor: pointer;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  z-index: 1000;
-  transition: background-color 0.3s ease;
-}
-
-.alert-button img {
-  width: 25px;
-  height: 25px;
-}
-
-
-.alert-button:hover {
-  background-color: red;
-}
-
-  
-  .post {
-    background: white;
-    padding: 15px;
-    margin-bottom: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    margin-left: 40px;
-    margin-right: 40px;
-    max-height: 300px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Shadow: 0px horizontally, 4px vertically, 6px blur, 20% opacity */
-
-  }
-
-.post {
-  background: white;
-  padding: 15px;
-  margin-bottom: 40px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  margin-left: 40px;
-  margin-right: 40px;
-  max-height: 300px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  /* Shadow: 0px horizontally, 4px vertically, 6px blur, 20% opacity */
-
-}
-
-.post h2 {
-  margin-bottom: 0px;
+.dislike-btn.voted img {
+  filter: invert(23%) sepia(99%) saturate(5652%) hue-rotate(348deg) brightness(98%) contrast(105%);
 }
 
 .Time {
@@ -170,15 +109,50 @@ main section h2 {
   background-color: white;
 }
 
+.reaction-icon {
+    width: 20px;
+    height: 20px;
+    transition: filter 0.2s ease;
 
-.like-btn:hover {
-  background-color: rgb(0, 255, 0);
-}
+    filter: brightness(0) saturate(100%); /* base: black */
+  }
 
-.dislike-btn:hover {
-  background-color: rgb(255, 0, 0);
-}
+  
+  /* Turn fully black on hover */
+  .like-btn:hover .like-icon,
+  .dislike-btn:hover .dislike-icon {
+    filter: brightness(0) saturate(100%) invert(0%);
+  }
+  
 
+
+.alert-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 70px;
+    height: 70px;
+    background-color: #022851;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+  }
+  
+  .alert-button img {
+    width: 40px;
+    height: 40px;
+  }
+  
+  
+  .alert-button:hover {
+    background-color: rgb(228, 40, 40);
+  }
+  
+  
+  
 
 @media screen and (max-width: 430px) {
   .post {
@@ -205,4 +179,34 @@ main section h2 {
     flex-direction: column;
     align-items: stretch;
   }
+}
+
+.toggle-group {
+  display: inline-flex;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  overflow: hidden;
+  margin-left: 2.6rem;
+  width: 12rem;
+}
+
+.toggle-btn {
+  background-color: #f0f4ff;
+  color: #022851;
+  padding: 0.5rem 1.2rem;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.2s;
+  width:50%;
+  text-align: center;
+}
+
+.toggle-btn:hover {
+  background-color: #e0eaff;
+}
+
+.toggle-btn.active {
+  background-color: rgb(171, 197, 245);
+  font-weight: bold;
 }
