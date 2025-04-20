@@ -1,61 +1,78 @@
-<!--포스트 등록 페이지-->
-
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Account</title>
-    <link rel="stylesheet" href="account.css" />
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <nav class="navbar">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Account</title>
+  <link rel="stylesheet" href="account.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-center">
+      <a href="index.html" class="logo-link">
+        Aggie Alert
+        <img src="images/logo.svg" class="logo-image" />
+      </a>
+    </div>
+    <div class="navbar-right" id="authArea">
+      <!-- Filled by JS -->
+    </div>
+  </nav>
 
-      <div class="navbar-center">
-        <a href="index.html" class="logo-link">
-          Aggie Alert
-          <img src="images/logo.svg" class="logo-image" />
-        </a>
-      </div>
-      <div class="navbar-right"><a href="login.html"><img src="images/human.svg" class="human-image" />My Account</a></div>
-    </nav>
+  <main>
+    <section class="section">
+      <h2>Account</h2>
+      <div class="link"><strong>Email:</strong> <span id="email">Loading...</span></div>
+      <div class="link" onclick="logout()"><strong>Logout</strong></div>
+      <div class="link"><strong>Change Password</strong></div>
+      <div class="link"><strong>Ask Question</strong></div>
+      <div class="link"><strong>Report a Problem</strong></div>
+      <div class="link" onclick="deleteAccount()"><strong>Delete my account</strong></div>
+      <div class="line"></div>
+      <h2>User Guideline</h2>
+      <div class="link"><strong>Terms of Use</strong></div>
+      <div class="link"><strong>Privacy Policy</strong></div>
+    </section>
+  </main>
 
-    <main>
-        <section class="section">
-            <h2>Account</h2>
-            <div class="link"><strong>Email:</strong> <span id="email">dfjdkj@!gmail.com</span></div>
-            <div class="link" onclick="logout()"><strong>Logout</strong></div>
-            <div class="link"><strong>Change Password</strong></div>
-            <div class="link"><strong>Ask Question</strong></div>
-            <div class="link"><strong>Report a Problem</strong></div>
-            <div class="link" onclick="deleteAccount()"><strong>Delete my account</strong></div>
-            <div class = "line"></div>
-            <h2>User Guideline</h2>
-            <div class="link"><strong>Terms of Use</strong></a>
-            <div class="link"><strong>Privacy Policy</strong></a>
-          </section>
-      </main>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const emailSpan = document.getElementById("email");
+      const authArea = document.getElementById("authArea");
+      const email = localStorage.getItem("userEmail");
+      const loggedIn = localStorage.getItem("loggedIn") === "true";
 
-    <script>
-        function logout() {
-            alert("Logged out!");
-            window.location.href = "login.html";
-          }
-      
-          function changePassword() {
-            alert("Redirecting to password change page...");
-            // TODO: 연결된 페이지로 이동
-          }
-      
-          function deleteAccount() {
-            const confirmed = confirm("Are you sure you want to delete your account? This action cannot be undone.");
-            if (confirmed) {
-              alert("Account deleted (not really, this is just a demo)");
-              // TODO: 실제 삭제 처리
-              window.location.href = "index.html";
-            }
-          }
-    </script>
-  </body>
+      if (!loggedIn || !email) {
+        alert("You must be logged in to view this page.");
+        window.location.href = "login.html";
+        return;
+      }
+
+      emailSpan.textContent = email;
+
+      authArea.innerHTML = `
+        <span>👤 Logged in as <strong>${email}</strong></span>
+        &nbsp;&nbsp;<a href="#" onclick="logout()">Logout</a>
+      `;
+    });
+
+    function logout() {
+      localStorage.removeItem("loggedIn");
+      localStorage.removeItem("userEmail");
+      alert("Logged out!");
+      window.location.href = "login.html";
+    }
+
+    function deleteAccount() {
+      const confirmed = confirm("Are you sure you want to delete your account? This action cannot be undone.");
+      if (confirmed) {
+        // TODO: Connect to backend to delete account
+        localStorage.clear();
+        alert("Account deleted (demo only).");
+        window.location.href = "index.html";
+      }
+    }
+  </script>
+</body>
 </html>

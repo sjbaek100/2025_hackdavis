@@ -20,11 +20,7 @@
           <img src="images/logo.svg" class="logo-image" />
         </a>
       </div>
-      <div class="navbar-right">
-        <a href="login.html">
-          <img src="images/human.svg" class="human-image" />
-          My Account
-        </a>
+      <div class="navbar-right" id="authArea">
       </div>
     </nav>
 
@@ -34,7 +30,7 @@
           <button class="toggle-btn" id="alertBtn">Alert</button>
           <button class="toggle-btn" id="disasterBtn">Disaster</button>
         </div>
-
+    
         <div class="dropdown">
           <div class="sort-toggle" id="sortToggle">
             <img src="images/sort-10.svg" class="sort-icon" />
@@ -48,33 +44,11 @@
           </ul>
         </div>
       </div>
-
-      <!-- ✅ Correct ID: no space -->
-      <div id="post-list">
-        <div class="post">
-          <h2>{{ report.title }}</h2>
-          <p class="Time">📅 {{ report.time }}</p>
-          <p class="Location-category">
-            📍 {{ report.location }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            📌 {{ report.category }}
-          </p>
-          <p class="Description">{{ report.description }}</p>
-          <a href="post.html">Read More</a>
-
-          <div class="post-actions">
-            <button class="like-btn">
-              <img src="images/thumbs-up.svg" alt="Like" class="reaction-icon" />
-              <span class="like-count">0</span>
-            </button>
-
-            <button class="dislike-btn">
-              <img src="images/thumbs-down.svg" alt="Dislike" class="reaction-icon" />
-              <span class="dislike-count">0</span>
-            </button>
-          </div>
-        </div>
-      </div>
+    
+      <!-- ✅ JavaScript will populate posts here -->
+      <div id="post-list"></div>
     </main>
+    
 
     <a href="report.html">
       <button class="alert-button">
@@ -145,5 +119,38 @@
         }
       });
     </script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const authArea = document.getElementById("authArea");
+    const loggedIn = localStorage.getItem("loggedIn") === "true";
+    const userEmail = localStorage.getItem("userEmail");
+
+    if (loggedIn && userEmail) {
+      authArea.innerHTML = `
+        <a href="account.html">
+          👤 Logged in as <strong>${userEmail}</strong>
+        </a>
+        &nbsp;&nbsp;
+        <a href="#" id="logoutBtn">Logout</a>
+      `;
+
+      document.getElementById("logoutBtn").addEventListener("click", () => {
+        localStorage.removeItem("loggedIn");
+        localStorage.removeItem("userEmail");
+        location.reload(); // refresh index
+      });
+    } else {
+      authArea.innerHTML = `
+        <a href="login.html">
+          <img src="images/human.svg" class="human-image" />
+          My Account
+        </a>
+      `;
+    }
+  });
+</script>
+
+
   </body>
 </html>

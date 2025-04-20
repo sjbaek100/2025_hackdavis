@@ -24,9 +24,7 @@
   gap: 10px;
 }
 
-.like-count{
-  padding-top: 0.3rem;
-}
+
 
 .like-btn,
 .dislike-btn {
@@ -44,6 +42,16 @@
 .dislike-btn{
   padding-top: 10px;
 }
+
+.like-btn{
+    padding-top: 10px;
+}
+
+.like-btn:hover .like-text,
+.dislike-btn:hover .dislike-text {
+color: rgb(116, 162, 247);
+}
+
 
 .reaction-icon {
   width: 20px;
