@@ -24,8 +24,7 @@ function renderPosts(postList) {
             <button class="dislike-btn">
               <img src="images/thumbs-down.svg" alt="Dislike" class="icon" />
               Dislike <span class="dislike-count">0</span>
-            </button>       
-      </div>
+            </button>      
     `;
 
     const likeBtn = post.querySelector('.like-btn');
