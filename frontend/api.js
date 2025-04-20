@@ -46,3 +46,17 @@ export async function removeVote(reportId, type) {
     return res.json();
   }
   
+export async function fetchComments(alertId) {
+    const res = await fetch(`${API_BASE}/alerts/${alertId}/comments`);
+    return res.json();
+}
+
+export async function postComment(alertId, author, body) {
+    const res = await fetch(`${API_BASE}/alerts/${alertId}/comments`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ author, body }),
+    });
+    return res.json();
+}
+  

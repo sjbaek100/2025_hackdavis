@@ -1,5 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Report Details</title>
+
+  <link rel="stylesheet" href="post.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <nav class="navbar">
+    <div class="navbar-center"><a href="index.html">Aggie Alert</a></div>
+    <div class="navbar-right"><a href="#">My Account</a></div>
+  </nav>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -13,6 +27,52 @@
       <div class="navbar-right"><a href="#">My Account</a></div>
     </nav>
 
+  <main>
+
+    <section id="report-detail" class="report-detail">
+      <h2>Loading title…</h2>
+      <p><strong>Time:</strong> –</p>
+      <p><strong>Location:</strong> –</p>
+      <p><strong>Category:</strong> –</p>
+      <p><strong>Description:</strong><br>Loading description…</p>
+
+      <div class="post-actions">
+        <button class="like-btn">👍 Like <span class="like-count">0</span></button>
+        <button class="dislike-btn">👎 Dislike <span class="dislike-count">0</span></button>
+      </div>
+
+      <div class="comment-section">
+        <h3>Comments</h3>
+        <div class="comment-input">
+          <textarea id="commentBox" placeholder="Write a comment…" rows="3"></textarea>
+          <button id="dummySubmitBtn">Submit</button>
+        </div>
+        <ul id="commentList">
+          <li><strong>demo@user.com</strong>: Example comment (remove when real data loads)</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="post.js"></script>
+
+  <script>
+    /*  This block lets you test comments immediately—
+        once post.js replaces the section it no longer runs.
+    */
+    const currentUserEmail = "akjekjie@gmail.com";
+
+    document.getElementById("dummySubmitBtn").addEventListener("click", () => {
+      const box = document.getElementById("commentBox");
+      const text = box.value.trim();
+      if (!text) return alert("Please enter a comment.");
+      const li = document.createElement("li");
+      li.innerHTML = `<strong>${currentUserEmail}</strong>: ${text}`;
+      document.getElementById("commentList").appendChild(li);
+      box.value = "";
+    });
+  </script>
+</body>
     <main>
       <section id="report-detail" class="report-detail">
         <!-- Filled by JavaScript -->
