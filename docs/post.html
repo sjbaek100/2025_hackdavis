@@ -15,7 +15,7 @@
         <img src="images/logo.svg" class="logo-image" />
       </a>
     </div>
-    <div class="navbar-right">
+    <div class="navbar-right" id="authArea">
       <a href="login.html">
         <img src="images/human.svg" class="human-image" />
         My Account
@@ -24,13 +24,34 @@
   </nav>
 
   <main>
-    <!-- Your JS will populate this -->
     <section id="report-detail" class="report-detail">
       <p>Loading report...</p>
     </section>
   </main>
 
-  <!-- JS that renders the report, comments, voting, etc -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const loggedIn = localStorage.getItem("loggedIn") === "true";
+      const email = localStorage.getItem("userEmail");
+      const authArea = document.getElementById("authArea");
+
+      if (loggedIn && email) {
+      authArea.innerHTML = `
+        <a href="account.html">
+          👤 Logged in as <strong>${email}</strong>
+        </a>
+        &nbsp;&nbsp;
+        <a href="#" id="logoutBtn">Logout</a>
+      `;
+        document.getElementById("logoutBtn").addEventListener("click", () => {
+          localStorage.removeItem("loggedIn");
+          localStorage.removeItem("userEmail");
+          location.reload();
+        });
+      }
+    });
+  </script>
+
   <script type="module" src="post.js"></script>
 </body>
 </html>
