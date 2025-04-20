@@ -4,6 +4,9 @@
     margin-bottom: 20px;
 }
 
+
+
+
 /* Style for the select dropdown */
 #filter {
     padding: 10px 10px;
@@ -23,8 +26,22 @@
     margin-left: 6px;
     vertical-align: middle;
     opacity: 0.7;
-  }
+}
   
+
+.like-btn.voted {
+  background-color: #c8f8dc;
+  font-weight: bold;
+  border-radius: 6px;
+}
+
+.dislike-btn.voted {
+  background-color: #ffd3d3;
+  font-weight: bold;
+  border-radius: 6px;
+}
+
+
 .alert-button {
     position: fixed;
     bottom: 20px;
