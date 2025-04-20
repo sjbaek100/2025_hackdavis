@@ -20,63 +20,34 @@
           <img src="images/logo.svg" class="logo-image" />
         </a>
       </div>
-      <div class="navbar-right"><a href="login.html"><img src="images/human.svg" class="human-image" />My Account</a></div>
+      <div class="navbar-right" id="authArea">
+      </div>
     </nav>
     <main class="postings-container">
-      <!-- Main content goes here -->
       <div class="group">
-      <div class="toggle-group">
-        <button class="toggle-btn" id="alertBtn">Alert</button>
-        <button class="toggle-btn" id="disasterBtn">Disaster</button>
-      </div>
-      <div class="dropdown">
-        <div class="sort-toggle" id="sortToggle">
-          <img src="images/sort-10.svg" class="sort-icon" />
-          <span>Sort By</span>
-          <i class="fa-solid fa-chevron-down"></i>
+        <div class="toggle-group">
+          <button class="toggle-btn" id="alertBtn">Alert</button>
+          <button class="toggle-btn" id="disasterBtn">Disaster</button>
         </div>
-        <ul class="sort-menu" id="sortMenu">
-          <li data-value="newest">Newest Post</li>
-          <li data-value="most_liked">Most Liked</li>
-          <li data-value="oldest">Oldest Post</li>
-        </ul>
-      </div>
-      
-      
-    </div>
-    <div id="posting container">
-        <div class="post">
-          <h2>{{ report.title }}</h2>
-          <p class="Time">📅 {{ report.time }}</p>
-          <p class="Location-category">
-            📍 {{ report.location }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 📌 {{ report.category }}
-          </p>
-          <p class="Description">{{ report.description }}</p>
-          <a href="post.html">Read More</a>
-
-          <div class="post-actions">
-            <button class="like-btn">
-              <img
-                src="images/thumbs-up.svg"
-                alt="Like"
-                class="reaction-icon"
-              />
-              <span class="like-count">0</span>
-            </button>
-
-            <button class="dislike-btn">
-              <img
-                src="images/thumbs-down.svg"
-                alt="Dislike"
-                class="reaction-icon"
-              />
-              <span class="dislike-count">0</span>
-            </button>
+    
+        <div class="dropdown">
+          <div class="sort-toggle" id="sortToggle">
+            <img src="images/sort-10.svg" class="sort-icon" />
+            <span>Sort By</span>
+            <i class="fa-solid fa-chevron-down"></i>
           </div>
-          </div>
+          <ul class="sort-menu" id="sortMenu">
+            <li data-value="newest">Newest Post</li>
+            <li data-value="most_liked">Most Liked</li>
+            <li data-value="oldest">Oldest Post</li>
+          </ul>
         </div>
       </div>
+    
+      <!-- ✅ JavaScript will populate posts here -->
+      <div id="post-list"></div>
     </main>
+    
 
     <a href="report.html">
       <button class="alert-button">
@@ -122,8 +93,39 @@
       sortMenu.classList.remove("show");
       }
       });
-
     </script>
-    
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const authArea = document.getElementById("authArea");
+    const loggedIn = localStorage.getItem("loggedIn") === "true";
+    const userEmail = localStorage.getItem("userEmail");
+
+    if (loggedIn && userEmail) {
+      authArea.innerHTML = `
+        <a href="account.html">
+          👤 Logged in as <strong>${userEmail}</strong>
+        </a>
+        &nbsp;&nbsp;
+        <a href="#" id="logoutBtn">Logout</a>
+      `;
+
+      document.getElementById("logoutBtn").addEventListener("click", () => {
+        localStorage.removeItem("loggedIn");
+        localStorage.removeItem("userEmail");
+        location.reload(); // refresh index
+      });
+    } else {
+      authArea.innerHTML = `
+        <a href="login.html">
+          <img src="images/human.svg" class="human-image" />
+          My Account
+        </a>
+      `;
+    }
+  });
+</script>
+
+
   </body>
 </html>

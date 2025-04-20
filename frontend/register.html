@@ -1,39 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Create Account</title>
-    <link rel="stylesheet" href="register.css" />
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <nav class="navbar">
-      <div class="navbar-center">
-        <a href="index.html" class="logo-link">
-          Aggie Alert
-          <img src="images/logo.svg" class="logo-image" />
-        </a>
-      </div>
-      <div class="navbar-right"><a href="login.html"><img src="images/human.svg" class="human-image" />My Account</a></div>
-    </nav>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Account</title>
+  <link rel="stylesheet" href="register.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-center">
+      <a href="index.html" class="logo-link">
+        Aggie Alert
+        <img src="images/logo.svg" class="logo-image" />
+      </a>
+    </div>
+    <div class="navbar-right">
+      <a href="login.html"><img src="images/human.svg" class="human-image" />My Account</a>
+    </div>
+  </nav>
 
-    <main>
-      <form class="register-form" onsubmit="return validateRegisterForm()">
-        <h2>Create Account</h2>
+  <main>
+    <form class="register-form" id="registerForm">
+      <h2>Create Account</h2>
 
-        <label for="email">Email</label>
-        <input type="email" id="email" required />
+      <label for="email">Email</label>
+      <input type="email" id="email" required />
 
-        <label for="password">Password</label>
-        <input type="password" id="password" required />
+      <label for="password">Password</label>
+      <input type="password" id="password" required />
 
-        <label for="confirm">Confirm Password</label>
-        <input type="password" id="confirm" required />
+      <label for="confirm">Confirm Password</label>
+      <input type="password" id="confirm" required />
 
-        <button type="submit">Sign Up</button>
-      </form>
-    </main>
-    <script src="index.js"></script>
-  </body>
+      <button type="submit">Sign Up</button>
+    </form>
+  </main>
+
+  <script>
+    document.getElementById("registerForm").addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+      const confirm = document.getElementById("confirm").value;
+
+      if (!email || !password || !confirm) {
+        alert("Please fill out all fields.");
+        return;
+      }
+
+      if (password !== confirm) {
+        alert("Passwords do not match.");
+        return;
+      }
+
+      try {
+        const response = await fetch("http://127.0.0.1:5000/auth/register", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ email, password })
+        });
+
+        const data = await response.json();
+
+        if (response.ok && data.message === "Registration successful") {
+          alert("Account created! You can now log in.");
+          window.location.href = "login.html";
+        } else {
+          alert("Signup failed: " + (data.message || "Unknown error"));
+        }
+      } catch (err) {
+        console.error("Signup error:", err);
+        alert("An error occurred while creating your account.");
+      }
+    });
+  </script>
+</body>
 </html>

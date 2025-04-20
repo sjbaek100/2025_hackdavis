@@ -3,11 +3,7 @@ import { fetchReports, upvoteReport, downvoteReport, removeVote } from "./api.js
 let posts = [];
 let currentSort = "newest";
 
-// Target the container where posts should be rendered
-const container = document.getElementById("post-list");
-const sortMenu = document.getElementById("sortMenu");
-
-function renderPosts(postList) {
+function renderPosts(postList, container) {
   if (!container) {
     console.error("Error: #post-list container not found.");
     return;
@@ -20,22 +16,25 @@ function renderPosts(postList) {
     post.classList.add("post");
 
     post.innerHTML = `
-      <h2>${report.title}</h2>
-      <p class="Time">${new Date(report.created_at).toLocaleString()}</p>
-      <p class="Location-category">${report.location} • ${report.category}</p>
-      <p class="Description">${report.description}</p>
-      <a href="post.html?id=${report.id}">Read More</a>
-      <div class="post-actions">
-        <button class="like-btn">
-          <img src="images/thumbs-up.svg" alt="Like" class="reaction-icon" />
-          Like <span class="like-count">${report.upvotes}</span>
-        </button>
-        <button class="dislike-btn">
-          <img src="images/thumbs-down.svg" alt="Dislike" class="reaction-icon" />
-          Dislike <span class="dislike-count">${report.downvotes}</span>
-        </button>
-      </div>
-    `;
+    <h2>${report.title}</h2>
+    <p class="Time">${new Date(report.created_at).toLocaleString()}</p>
+    <p class="Location-category">${report.location} • ${report.category}</p>
+    <p class="Description">${report.description}</p>
+    <a href="post.html?id=${report.id}">Read More</a>
+    <div class="post-actions">
+      <button class="like-btn">
+        <img src="images/thumbs-up.svg" alt="Like" class="reaction-icon" />
+        <span class="like-text">Like</span>
+        <span class="like-count">${report.upvotes}</span>
+      </button>
+      <button class="dislike-btn">
+        <img src="images/thumbs-down.svg" alt="Dislike" class="reaction-icon" />
+        <span class="dislike-text">Dislike</span>
+        <span class="dislike-count">${report.downvotes}</span>
+      </button>
+    </div>
+  `;
+  
 
     const likeBtn = post.querySelector(".like-btn");
     const dislikeBtn = post.querySelector(".dislike-btn");
@@ -58,7 +57,7 @@ function renderPosts(postList) {
       }
 
       posts = await fetchReports();
-      sortAndRender();
+      sortAndRender(container);
     });
 
     dislikeBtn.addEventListener("click", async () => {
@@ -74,14 +73,14 @@ function renderPosts(postList) {
       }
 
       posts = await fetchReports();
-      sortAndRender();
+      sortAndRender(container);
     });
 
     container.appendChild(post);
   });
 }
 
-function sortAndRender() {
+function sortAndRender(container) {
   let sorted = [...posts];
 
   if (currentSort === "newest") {
@@ -92,22 +91,30 @@ function sortAndRender() {
     sorted.sort((a, b) => b.upvotes - a.upvotes);
   }
 
-  renderPosts(sorted);
+  renderPosts(sorted, container);
 }
 
-async function init() {
+async function init(container) {
   posts = await fetchReports();
-  sortAndRender();
+  sortAndRender(container);
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  init();
+  const container = document.getElementById("post-list");
+  const sortMenu = document.getElementById("sortMenu");
+
+  if (!container) {
+    console.error("Cannot find #post-list in the DOM.");
+    return;
+  }
+
+  init(container);
 
   sortMenu.addEventListener("click", (e) => {
     const value = e.target.getAttribute("data-value");
     if (value) {
       currentSort = value;
-      sortAndRender();
+      sortAndRender(container);
     }
   });
 });

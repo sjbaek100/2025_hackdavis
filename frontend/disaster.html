@@ -1,51 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Disaster</title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="disaster.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-    />
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Disaster</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="disaster.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-center">
+      <a href="index.html" class="logo-link">
+        Aggie Alert
+        <img src="images/logo.svg" class="logo-image" />
+      </a>
+    </div>
+    <div class="navbar-right" id="authArea">
+      <a href="login.html"><img src="images/human.svg" class="human-image" />My Account</a>
+    </div>
+  </nav>
 
-  <body>
-    <nav class="navbar">
-      <div class="navbar-center">
-        <a href="index.html" class="logo-link">
-          Aggie Alert
-          <img src="images/logo.svg" class="logo-image" />
-        </a>
-      </div>
-      <div class="navbar-right"><a href="login.html"><img src="images/human.svg" class="human-image" />My Account</a></div>
-    </nav>
+  <main class="disaster-container">
+    <div class="toggle-group">
+      <button class="toggle-btn" id="alertBtn">Alert</button>
+      <button class="toggle-btn" id="disasterBtn">Disaster</button>
+    </div>
+    <div id="disaster-list"></div>
+  </main>
 
-    <main class="disaster-container">
-      <div class="toggle-group">
-        <button class="toggle-btn" id="alertBtn">Alert</button>
-        <button class="toggle-btn" id="disasterBtn">Disaster</button>
-      </div>
-      <p>Disaster reported 50 miles from Davis, California.</p>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const alertBtn = document.getElementById("alertBtn");
+      const disasterBtn = document.getElementById("disasterBtn");
+      const current = window.location.pathname;
 
-        <div id="disaster-list"></div>
-      </main>
-    <!-- Optional JavaScript -->
-    <!-- <script src="disaster.js"></script> -->
-    <script>
+      // Toggle active state
+      if (current.includes("disaster")) {
+        disasterBtn.classList.add("active");
+      } else {
+        alertBtn.classList.add("active");
+      }
+
+      // Toggle navigation
+      alertBtn.onclick = () => {
+        if (!current.includes("index")) window.location.href = "index.html";
+      };
+
+      disasterBtn.onclick = () => {
+        if (!current.includes("disaster")) window.location.href = "disaster.html";
+      };
+
+      // Fetch disaster alerts
       const container = document.getElementById("disaster-list");
-      
       fetch("http://127.0.0.1:5000/alerts/api/disasters")
         .then((res) => res.json())
-        .then((disasterList) => {
-          container.innerHTML = ""; 
-      
-          disasterList.forEach((disaster) => {
+        .then((data) => {
+          container.innerHTML = "";
+          data.forEach((disaster) => {
             const card = document.createElement("div");
             card.className = "alert-card";
-      
             card.innerHTML = `
               <h3>${disaster.type}</h3>
               <p>📍 <strong>Location:</strong> ${disaster.location}</p>
@@ -53,7 +67,6 @@
               <p>⏰ <strong>Time:</strong> ${disaster.time}</p>
               <p>${disaster.message}</p>
             `;
-      
             container.appendChild(card);
           });
         })
@@ -61,28 +74,24 @@
           console.error("Error fetching disaster data:", err);
           container.innerHTML = "<p style='color: red;'>⚠️ Failed to load disaster alerts.</p>";
         });
-      </script>
-    <script>
-      const alertBtn = document.getElementById("alertBtn");
-      const disasterBtn = document.getElementById("disasterBtn");
-      const current = window.location.pathname;
-    
-      // 현재 페이지에 따라 활성 버튼 설정
-      if (current.includes("disaster")) {
-        disasterBtn.classList.add("active");
-      } else {
-        alertBtn.classList.add("active");
-      }
-    
-      // 클릭 시 페이지 이동
-      alertBtn.onclick = () => {
-        if (!current.includes("index")) window.location.href = "index.html";
-      };
-    
-      disasterBtn.onclick = () => {
-        if (!current.includes("disaster")) window.location.href = "disaster.html";
-      };
-    </script>
 
-  </body>
+      // Optional: Show login state
+      const loggedIn = localStorage.getItem("loggedIn") === "true";
+      const email = localStorage.getItem("userEmail");
+      const authArea = document.getElementById("authArea");
+
+      if (loggedIn && email) {
+        authArea.innerHTML = `
+          <span>👤 Logged in as <strong>${email}</strong></span>
+          &nbsp;&nbsp;<a href="#" id="logoutBtn">Logout</a>
+        `;
+        document.getElementById("logoutBtn").addEventListener("click", () => {
+          localStorage.removeItem("loggedIn");
+          localStorage.removeItem("userEmail");
+          location.reload();
+        });
+      }
+    });
+  </script>
+</body>
 </html>

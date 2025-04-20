@@ -1,59 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login</title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="login.css" />
-  </head>
-  <body>
-    <nav class="navbar">
-      <div class="navbar-center">
-        <a href="index.html" class="logo-link">
-          Aggie Alert
-          <img src="images/logo.svg" class="logo-image" />
-        </a>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="login.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-center">
+      <a href="index.html" class="logo-link">
+        Aggie Alert
+        <img src="images/logo.svg" class="logo-image" />
+      </a>
+    </div>
+    <div class="navbar-right">
+      <a href="register.html">
+        <img src="images/human.svg" class="human-image" />
+        Create Account
+      </a>
+    </div>
+  </nav>
+
+  <main>
+    <form class="login-form" id="loginForm">
+      <h2>Login</h2>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" required />
+
+      <label for="password">Password</label>
+      <input type="password" id="password" required />
+
+      <div class="form-options">
+        <label>
+          <input type="checkbox" id="remember" />
+          Remember me
+        </label>
+        <a href="#">Forgot password?</a>
       </div>
-      <div class="navbar-right"><a href="register.html"><img src="images/human.svg" class="human-image" />Create Account</a></div>
-    </nav>
 
-    <main>
-      <form class="login-form" onsubmit="return validateLoginForm()">
-        <h2>Login</h2>
+      <button type="submit">Log In</button>
+    </form>
+  </main>
 
-        <label for="email">Email</label>
-        <input type="email" id="email" required />
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", async function (e) {
+      e.preventDefault();
 
-        <label for="password">Password</label>
-        <input type="password" id="password" required />
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
 
-        <div class="form-options">
-          <label>
-            <input type="checkbox" id="remember" />
-            Remember me
-          </label>
-          <a href="#">Forgot password?</a>
-        </div>
-
-        <button type="submit">Log In</button>
-      </form>
-    </main>
-
-    <script>
-      function validateLoginForm() {
-        const email = document.getElementById("email").value.trim();
-        const password = document.getElementById("password").value;
-
-        if (!email || !password) {
-          alert("Please enter both email and password.");
-          return false;
-        }
-
-        // 실제 로그인 처리 대신 테스트 alert
-        alert("Logged in (dummy)");
-        return true;
+      if (!email || !password) {
+        alert("Please enter both email and password.");
+        return;
       }
-    </script>
-  </body>
+
+      try {
+        const response = await fetch("http://127.0.0.1:5000/auth/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ email, password })
+        });
+
+        const data = await response.json();
+
+        if (response.ok && data.message === "Login successful") {
+          localStorage.setItem("loggedIn", "true");
+          localStorage.setItem("userEmail", email);
+
+          window.location.href = "index.html"; // redirect after login
+        } else {
+          alert("Login failed: " + (data.message || "Unknown error"));
+        }
+      } catch (error) {
+        console.error("Login error:", error);
+        alert("An error occurred during login.");
+      }
+    });
+  </script>
+</body>
 </html>
