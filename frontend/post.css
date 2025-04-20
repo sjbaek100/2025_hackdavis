@@ -23,14 +23,29 @@
   gap: 10px;
 }
 
-.like-btn, .dislike-btn {
-  padding: 8px 14px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 14px;
-  color: black;
-  background-color: white;
+.like-btn,
+.dislike-btn {
+    padding: 8px 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    color: black;
+    background-color: white;
+}
+.reaction-icon {
+  width: 20px;
+  height: 20px;
+  transition: filter 0.2s ease;
+
+  filter: brightness(0) saturate(100%); /* base: black */
+}
+
+
+/* Turn fully black on hover */
+.like-btn:hover .like-icon,
+.dislike-btn:hover .dislike-icon {
+  filter: brightness(0) saturate(100%) invert(0%);
 }
 
 
@@ -94,4 +109,3 @@ border-radius: 6px;
 cursor: pointer;
 margin-top: 0.5rem;
 }
-
