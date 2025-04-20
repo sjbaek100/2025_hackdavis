@@ -1,75 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Aggie Alert</title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="index.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  </head>
-  <body>
-    <nav class="navbar">
 
-      <div class="navbar-center"><a href="index.html">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aggie Alert</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="index.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+  <nav class="navbar">
+
+    <div class="navbar-center"><a href="index.html">
         Aggie Alert</div>
-      <div class="navbar-right"><a href="#">My Account</a></div>
-    </nav>
+    <div class="navbar-right"><a href="#">My Account</a></div>
+  </nav>
 
-    <main>
-      <!-- Main content goes here -->
-  
+  <main>
+    <!-- Main content goes here -->
 
-      <div class="dropdown">
-        <label for="filter">
+
+    <div class="dropdown">
+      <label for="filter">
    
           </label>        
-        <select id="filter" name="filter">
+      <select id="filter" name="filter">
             <option disabled selected>Sort by  🔽</option>
-            <option value="newest">Newest Post</option>
-          <option value="most_liked">Most Liked</option>         
+          <option value="newest">Newest Post</option>
+        <option value="most_liked">Most Liked</option>         
           <option value="oldest">Oldest Post</option>
-        </select>
+      </select>
+    </div>
+
+    <div id="postings-container">
+      <div class="post">
+        <h2>{{ report.title }}</h2>
+        <p class="Time">{{ report.time }}</p>
+        <p class="Location-category">{{ report.location }} {{ report.category }}</p>
+        <p class="Description">{{ report.description }}</p>
+        <a href="post.html">Read More</a>
+
+        <div class="post-actions">
+          <button class="like-btn">👍 Like <span class="like-count">0</span></button>
+          <button class="dislike-btn">👎 Dislike <span class="dislike-count">0</span></button>
+        </div>
       </div>
 
-      <div id="postings-container">
-        <div class="post">
-            <h2>{{ report.title }}</h2>
-            <p class="Time">{{ report.time }}</p>
-            <p class="Location-category">{{ report.location }} {{ report.category }}</p>
-            <p class="Description">{{ report.description }}</p>
-            <a href="post.html">Read More</a>
-          
-            <div class="post-actions">
-              <button class="like-btn">👍 Like <span class="like-count">0</span></button>
-              <button class="dislike-btn">👎 Dislike <span class="dislike-count">0</span></button>
-            </div>
-          </div>
-          
-          <div class="post">
-            <h2>Post Title 2</h2>
-            <p class="Time">MM-DD-YYYY 00:00</p>
-            <p class="Location-category">Location: Target Category: Suspicious Activity</p>
-            <p class="Description">Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
-            </p>
-            <a href="post.html">Read More</a>
-          
-            <div class="post-actions">
-              <button class="like-btn">👍 Like <span class="like-count">0</span></button>
-              <button class="dislike-btn">👎 Dislike <span class="dislike-count">0</span></button>
-            </div>
-          </div>          
+      <div class="post">
+        <h2>Post Title 2</h2>
+        <p class="Time">MM-DD-YYYY 00:00</p>
+        <p class="Location-category">Location: Target Category: Suspicious Activity</p>
+        <p class="Description">Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae
+          pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna
+          tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia
+          integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia
+          nostra inceptos himenaeos.
+        </p>
+        <a href="post.html">Read More</a>
+
+        <div class="post-actions">
+          <button class="like-btn">👍 Like <span class="like-count">0</span></button>
+          <button class="dislike-btn">👎 Dislike <span class="dislike-count">0</span></button>
+        </div>
       </div>
-      
-    </main>
+    </div>
+
+  </main>
 
 
 
-    <a href="report.html">
-    <button class="alert-button">!</button>
-    </a>
+  <a href="report.html">
+    <button class="alert-button">
+      <img src="images/logo.svg" class="alert-icon"></button>
+  </a>
 
-    <!-- Optional JavaScript -->
-    <script type="module" src="index.js"></script>
-  </body>
+  <!-- Optional JavaScript -->
+  <script type="module" src="index.js"></script>
+</body>
+
 </html>

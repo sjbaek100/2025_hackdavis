@@ -1,0 +1,41 @@
+
+  h1 {
+    font-size: 1.7rem;
+    margin-bottom: 2rem;
+    font-weight: 700;
+    color: #222;
+  }
+    
+  
+  .created {
+    font-size: 0.9rem;
+    color: #666;
+  }
+  
+  .section {
+    background-color: #fff;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 2rem;
+  }
+  
+  .section-title {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #999;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .link {
+    padding: 0.9rem 0;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #222;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  

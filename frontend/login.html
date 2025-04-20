@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Login - Aggie Alert</title>
+<link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="login.css" />
+
+</head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-center"><a href="index.html">Aggie Alert</a></div>
+    <div class="navbar-right"><a href="register.html">Create Account</a></div>
+  </nav>
+
+  <main>
+    <form class="login-form" onsubmit="return validateLoginForm()">
+      <h2>Login</h2>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" required />
+
+      <label for="password">Password</label>
+      <input type="password" id="password" required />
+
+      <div class="form-options">
+        <label>
+          <input type="checkbox" id="remember" />
+          Remember me
+        </label>
+        <a href="#">Forgot password?</a>
+      </div>
+
+      <button type="submit">Log In</button>
+    </form>
+  </main>
+
+  <script>
+    function validateLoginForm() {
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+
+      if (!email || !password) {
+        alert("Please enter both email and password.");
+        return false;
+      }
+
+      // 실제 로그인 처리 대신 테스트 alert
+      alert("Logged in (dummy)");
+      return true;
+    }
+  </script>
+</body>
+</html>
