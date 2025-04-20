@@ -18,12 +18,12 @@ function renderPosts(postList) {
       <div class="post-actions">
         <button class="like-btn">
           <img src="images/thumbs-up.svg" alt="Like" class="reaction-icon" />
-          Like <span class="like-count">0</span>
+          Like <span class="like-count">${report.upvotes}</span>
         </button>
 
         <button class="dislike-btn">
           <img src="images/thumbs-down.svg" alt="Dislike" class="reaction-icon" />
-          Dislike <span class="dislike-count">0</span>
+          Dislike <span class="dislike-count">${report.downvotes}</span>
         </button>
       </div>      
     `;
