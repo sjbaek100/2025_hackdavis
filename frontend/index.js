@@ -1,14 +1,24 @@
 import { fetchReports, upvoteReport, downvoteReport, removeVote } from "./api.js";
 
 let posts = [];
-const container = document.getElementById('postings-container');
-const filter = document.getElementById('filter');
+let currentSort = "newest";
+
+// Target the container where posts should be rendered
+const container = document.getElementById("post-list");
+const sortMenu = document.getElementById("sortMenu");
 
 function renderPosts(postList) {
+  if (!container) {
+    console.error("Error: #post-list container not found.");
+    return;
+  }
+
   container.innerHTML = '';
-  postList.forEach(report => {
-    const post = document.createElement('div');
-    post.classList.add('post');
+
+  postList.forEach((report) => {
+    const post = document.createElement("div");
+    post.classList.add("post");
+
     post.innerHTML = `
       <h2>${report.title}</h2>
       <p class="Time">${new Date(report.created_at).toLocaleString()}</p>
@@ -18,110 +28,71 @@ function renderPosts(postList) {
       <div class="post-actions">
         <button class="like-btn">
           <img src="images/thumbs-up.svg" alt="Like" class="reaction-icon" />
-          Like <span class="like-count">0</span>
+          Like <span class="like-count">${report.upvotes}</span>
         </button>
-
         <button class="dislike-btn">
           <img src="images/thumbs-down.svg" alt="Dislike" class="reaction-icon" />
-          Dislike <span class="dislike-count">0</span>
+          Dislike <span class="dislike-count">${report.downvotes}</span>
         </button>
-      </div>      
+      </div>
     `;
 
-    const likeBtn = post.querySelector('.like-btn');
-    const dislikeBtn = post.querySelector('.dislike-btn');
-    const likeCount = post.querySelector('.like-count');
-    const dislikeCount = post.querySelector('.dislike-count');
+    const likeBtn = post.querySelector(".like-btn");
+    const dislikeBtn = post.querySelector(".dislike-btn");
     const voteKey = `voted-${report.id}`;
     const currentVote = localStorage.getItem(voteKey);
 
-    if (currentVote === "up") {
-      likeBtn.classList.add("voted");
-    } else if (currentVote === "down") {
-      dislikeBtn.classList.add("voted");
-    }
+    if (currentVote === "up") likeBtn.classList.add("voted");
+    if (currentVote === "down") dislikeBtn.classList.add("voted");
 
-    likeBtn.addEventListener('click', async () => {
-      const voteKey = `voted-${report.id}`;
-      const currentVote = localStorage.getItem(voteKey);
-    
-      if (currentVote === "up") {
-        const updated = await removeVote(report.id, "up");
-        report.upvotes = updated.upvotes;
-        report.downvotes = updated.downvotes;
-        likeCount.textContent = report.upvotes;
-        dislikeCount.textContent = report.downvotes;
+    likeBtn.addEventListener("click", async () => {
+      const vote = localStorage.getItem(voteKey);
+
+      if (vote === "up") {
+        await removeVote(report.id, "up");
         localStorage.removeItem(voteKey);
-        likeBtn.classList.remove("voted");
-        dislikeBtn.classList.remove("voted");
-
-      } 
-      else {
-        if (currentVote === "down") {
-          await removeVote(report.id, "down");
-        }
-        const updated = await upvoteReport(report.id);
-        report.upvotes = updated.upvotes;
-        report.downvotes = updated.downvotes;
-        likeCount.textContent = report.upvotes;
-        dislikeCount.textContent = report.downvotes;
+      } else {
+        if (vote === "down") await removeVote(report.id, "down");
+        await upvoteReport(report.id);
         localStorage.setItem(voteKey, "up");
-        likeBtn.classList.add("voted");
-        dislikeBtn.classList.remove("voted");
       }
+
+      posts = await fetchReports();
+      sortAndRender();
     });
-    
-    dislikeBtn.addEventListener('click', async () => {
-      const voteKey = `voted-${report.id}`;
-      const currentVote = localStorage.getItem(voteKey);
-    
-      if (currentVote === "down") {
-        const updated = await removeVote(report.id, "down");
-        report.upvotes = updated.upvotes;
-        report.downvotes = updated.downvotes;
-        likeCount.textContent = report.upvotes;
-        dislikeCount.textContent = report.downvotes;
+
+    dislikeBtn.addEventListener("click", async () => {
+      const vote = localStorage.getItem(voteKey);
+
+      if (vote === "down") {
+        await removeVote(report.id, "down");
         localStorage.removeItem(voteKey);
-        likeBtn.classList.remove("voted");
-        dislikeBtn.classList.remove("voted");
-
-      } 
-      else {
-        if (currentVote === "up") {
-          await removeVote(report.id, "up");
-        }
-    
-        const updated = await downvoteReport(report.id);
-        report.upvotes = updated.upvotes;
-        report.downvotes = updated.downvotes;
-        likeCount.textContent = report.upvotes;
-        dislikeCount.textContent = report.downvotes;
-        
+      } else {
+        if (vote === "up") await removeVote(report.id, "up");
+        await downvoteReport(report.id);
         localStorage.setItem(voteKey, "down");
-        dislikeBtn.classList.add("voted");
-        likeBtn.classList.remove("voted");
-
       }
+
+      posts = await fetchReports();
+      sortAndRender();
     });
-    
-    
-    
 
     container.appendChild(post);
   });
 }
 
 function sortAndRender() {
-  let sortedPosts = [...posts];
-  const filterVal = filter.value;
+  let sorted = [...posts];
 
-  if (filterVal === 'most_recent') {
-    sortedPosts.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
-  } else if (filterVal === 'most_liked') {
-    sortedPosts.sort((a, b) => b.upvotes - a.upvotes);
+  if (currentSort === "newest") {
+    sorted.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+  } else if (currentSort === "oldest") {
+    sorted.sort((a, b) => new Date(a.created_at) - new Date(b.created_at));
+  } else if (currentSort === "most_liked") {
+    sorted.sort((a, b) => b.upvotes - a.upvotes);
   }
 
-  renderPosts(sortedPosts);
+  renderPosts(sorted);
 }
 
 async function init() {
@@ -131,5 +102,12 @@ async function init() {
 
 document.addEventListener("DOMContentLoaded", () => {
   init();
-  filter.addEventListener('change', sortAndRender);
+
+  sortMenu.addEventListener("click", (e) => {
+    const value = e.target.getAttribute("data-value");
+    if (value) {
+      currentSort = value;
+      sortAndRender();
+    }
+  });
 });

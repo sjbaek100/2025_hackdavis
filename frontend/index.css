@@ -88,6 +88,7 @@
   overflow: hidden;
   width: 14rem;
   max-height: 42px;
+  margin-top: 0.5rem;
 }
 
 .toggle-btn {
