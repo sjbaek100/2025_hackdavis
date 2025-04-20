@@ -1,5 +1,7 @@
 .postings-container {
-  margin: 2rem;
+  margin-top: 2rem;
+  margin-left:5rem;
+  margin-right:5rem;
   padding: 1rem;
 }
 
@@ -7,6 +9,7 @@
   display: flex;
   justify-content: space-between;
 }
+
 .dropdown {
   display: inline-flex;
   margin-left: 12rem;
@@ -69,6 +72,7 @@
 
 .sort-menu li {
   padding: 0.5rem;
+  padding-left: 1.5rem;
   cursor: pointer;
   transition: background-color 0.2s;
 }
@@ -96,6 +100,7 @@
   transition: background 0.2s;
   width : 50%;
   text-align: center;
+  font-size: medium;
 }
 
 .toggle-btn:hover {
@@ -169,12 +174,12 @@
 
 .Time {
   color: gray;
-  font-size: small;
+  font-size: 0.9em;
 }
 
 .Location-category {
   color: gray;
-  font-size: small;
+  font-size: 0.9em;
 }
 
 .Description {
@@ -184,6 +189,8 @@
   -webkit-box-orient: vertical;
   max-height: 6em;
   margin-top: 2rem;
+  margin-bottom: 2rem;
+  font-size: 0.9em;
 }
 
 .post-actions {
@@ -228,6 +235,7 @@
 .alert-button {
   position: fixed;
   left:90%;
+  margin-top: 5%;
   width: 70px;
   height: 70px;
   background-color: #022851;

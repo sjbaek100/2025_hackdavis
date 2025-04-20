@@ -20,14 +20,14 @@
           <img src="images/logo.svg" class="logo-image" />
         </a>
       </div>
-      <div class="navbar-right"><a href="login.html">👤 My Account</a></div>
+      <div class="navbar-right"><a href="login.html"><img src="images/human.svg" class="human-image" />My Account</a></div>
     </nav>
     <main class="postings-container">
       <!-- Main content goes here -->
       <div class="group">
       <div class="toggle-group">
-        <button class="toggle-btn" id="alertBtn">🔔 Alert</button>
-        <button class="toggle-btn" id="disasterBtn">🌪 Disaster</button>
+        <button class="toggle-btn" id="alertBtn">Alert</button>
+        <button class="toggle-btn" id="disasterBtn">Disaster</button>
       </div>
       <div class="dropdown">
         <div class="sort-toggle" id="sortToggle">
@@ -46,9 +46,9 @@
     </div>
         <div class="post">
           <h2>{{ report.title }}</h2>
-          <p class="Time">{{ report.time }}</p>
+          <p class="Time">📅 {{ report.time }}</p>
           <p class="Location-category">
-            {{ report.location }} {{ report.category }}
+            📍 {{ report.location }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 📌 {{ report.category }}
           </p>
           <p class="Description">{{ report.description }}</p>
           <a href="post.html">Read More</a>

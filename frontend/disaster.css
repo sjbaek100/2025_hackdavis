@@ -22,6 +22,7 @@
     transition: background 0.2s;
     width : 50%;
     text-align: center;
+    font-size: medium;
 }
 
 .toggle-btn:hover {

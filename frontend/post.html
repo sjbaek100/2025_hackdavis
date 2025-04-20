@@ -15,14 +15,14 @@
           <img src="images/logo.svg" class="logo-image" />
         </a>
       </div>
-      <div class="navbar-right"><a href="login.html">👤 My Account</a></div>
+      <div class="navbar-right"><a href="login.html"><img src="images/human.svg" class="human-image" />My Account</a></div>
     </nav>
 
     <main>
       <section class="report-detail">
         <h2>{{ report.title }}</h2>
 
-        <p><strong>⏰ Time:</strong> {{ report.time }}</p>
+        <p><strong>📅 Time:</strong> {{ report.time }}</p>
         <p><strong>📍 Location:</strong> {{ report.location }}</p>
         <p><strong>📌 Category:</strong> {{ report.category }}</p>
         <p><strong>📄 Description:</strong><br />{{ report.description }}</p>
