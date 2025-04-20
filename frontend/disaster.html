@@ -81,10 +81,13 @@
       const authArea = document.getElementById("authArea");
 
       if (loggedIn && email) {
-        authArea.innerHTML = `
-          <span>👤 Logged in as <strong>${email}</strong></span>
-          &nbsp;&nbsp;<a href="#" id="logoutBtn">Logout</a>
-        `;
+      authArea.innerHTML = `
+        <a href="account.html">
+          👤 Logged in as <strong>${email}</strong>
+        </a>
+        &nbsp;&nbsp;
+        <a href="#" id="logoutBtn">Logout</a>
+      `;
         document.getElementById("logoutBtn").addEventListener("click", () => {
           localStorage.removeItem("loggedIn");
           localStorage.removeItem("userEmail");
