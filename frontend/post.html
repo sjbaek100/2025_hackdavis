@@ -14,40 +14,11 @@
     </nav>
 
     <main>
-      <section class="report-detail">
-        <h2>{{ report.title }}</h2>
-
-        <p><strong>Time:</strong> {{ report.time }}</p>
-        <p><strong>Location:</strong> {{ report.location }}</p>
-        <p><strong>Category:</strong> {{ report.category }}</p>
-        <p><strong>Description:</strong><br />{{ report.description }}</p>
-
-        {% if report.photo %}
-        <div>
-          <strong>Uploaded Photo:</strong><br />
-          <img
-            src="{{ url_for('static', filename=report.photo) }}"
-            alt="photo"
-            style="
-              max-width: 100%;
-              border: 1px solid #ccc;
-              border-radius: 8px;
-              margin-top: 10px;
-            "
-          />
-        </div>
-        {% endif %}
-        <div class="post-actions">
-          <button class="like-btn">
-            👍 Like <span class="like-count">0</span>
-          </button>
-          <button class="dislike-btn">
-            👎 Dislike <span class="dislike-count">0</span>
-          </button>
-        </div>
+      <section id="report-detail" class="report-detail">
+        <!-- Filled by JavaScript -->
       </section>
     </main>
 
-    <script src="index.js"></script>
+    <script type="module" src="post.js"></script>
   </body>
 </html>

@@ -14,7 +14,7 @@ function renderPosts(postList) {
       <p class="Time">${new Date(report.created_at).toLocaleString()}</p>
       <p class="Location-category">${report.location} • ${report.category}</p>
       <p class="Description">${report.description}</p>
-      <a href="post.html">Read More</a>
+      <a href="post.html?id=${report.id}">Read More</a>
       <div class="post-actions">
         <button class="like-btn">👍 Like <span class="like-count">${report.upvotes}</span></button>
         <button class="dislike-btn">👎 Dislike <span class="dislike-count">${report.downvotes}</span></button>
