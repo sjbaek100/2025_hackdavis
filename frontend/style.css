@@ -1,14 +1,14 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #eeb034;
+    background-color: white;
   }
   
   .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #022851; /* UC Davis blue */
+    background-image: linear-gradient(90deg, #022851, #b28b00); /* UC Davis blue to dark yellow */
     color: white;
     padding: 1rem;
     position: relative;
