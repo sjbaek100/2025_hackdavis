@@ -9,6 +9,19 @@ main section h2 {
     margin-bottom: 20px;
 }
 
+.like-btn.voted {
+  background-color: #c8f8dc;
+  font-weight: bold;
+  border-radius: 6px;
+}
+
+.dislike-btn.voted {
+  background-color: #ffd3d3;
+  font-weight: bold;
+  border-radius: 6px;
+}
+
+
 .alert-button {
     position: fixed;
     bottom: 20px;
