@@ -25,6 +25,14 @@ main section h2 {
     text-align-last: center;
   }
   
+
+.sort-icon {
+    width: 16px;
+    height: 16px;
+    margin-left: 6px;
+    vertical-align: middle;
+    opacity: 0.7;
+}
   
 
 .like-btn.voted {
