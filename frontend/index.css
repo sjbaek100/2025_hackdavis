@@ -65,6 +65,15 @@ color: black;
   border-radius: 6px;
 }
 
+.like-btn.voted img {
+  filter: invert(51%) sepia(98%) saturate(459%) hue-rotate(76deg) brightness(96%) contrast(89%);
+}
+
+.dislike-btn.voted img {
+  filter: invert(23%) sepia(99%) saturate(5652%) hue-rotate(348deg) brightness(98%) contrast(105%);
+}
+
+
 
 .Time {
   color: gray;
