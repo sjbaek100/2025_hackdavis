@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from models import db, Alert
+from models import db, Alert, Comment
 
 alert_bp = Blueprint('alerts', __name__)
 @alert_bp.route("/", methods=["POST"])
@@ -81,3 +81,39 @@ def remove_vote(alert_id):
 
     db.session.commit()
     return jsonify({"upvotes": alert.upvotes, "downvotes": alert.downvotes})
+
+
+@alert_bp.route("/<int:alert_id>/comments", methods=["GET"])
+def get_comments(alert_id):
+    Alert.query.get_or_404(alert_id)
+    comments = Comment.query.filter_by(alert_id=alert_id)\
+                             .order_by(Comment.created_at).all()
+    return jsonify([
+        {
+            "id": c.id,
+            "author": c.author,
+            "body": c.body,
+            "created_at": c.created_at.isoformat()
+        } for c in comments
+    ])
+
+@alert_bp.route("/<int:alert_id>/comments", methods=["POST"])
+def add_comment(alert_id):
+    Alert.query.get_or_404(alert_id)
+    data = request.get_json() or {}
+    body   = data.get("body", "").strip()
+    author = data.get("author", "Anonymous").strip()
+
+    if not body:
+        return jsonify({"error": "Comment body required"}), 400
+
+    comment = Comment(alert_id=alert_id, author=author, body=body)
+    db.session.add(comment)
+    db.session.commit()
+
+    return jsonify({
+        "id": comment.id,
+        "author": comment.author,
+        "body": comment.body,
+        "created_at": comment.created_at.isoformat()
+    }), 201
