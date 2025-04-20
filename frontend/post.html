@@ -32,7 +32,38 @@
             <button class="like-btn">👍 Like <span class="like-count">0</span></button>
             <button class="dislike-btn">👎 Dislike <span class="dislike-count">0</span></button>
         </div>
+        <div class="comment-section">
+          <h3>Comments</h3>
+
+          <div class="comment-input">
+            <textarea id="commentBox" placeholder="Write a comment..." rows="3"></textarea>
+            <button onclick="submitComment()">Submit</button>
+          </div>
+
+          <ul id="commentList"></ul>
+        </div>
     </section>
 </main>
+    <script>
+        //dummy data
+        const currentUserEmail = "akjekjie@gmail.com"; 
+
+        function submitComment() {
+            const comment = document.getElementById("commentBox").value.trim();
+
+            if (!comment) {
+              alert("Please enter a comment.");
+              return;
+            }
+
+            const list = document.getElementById("commentList");
+            const item = document.createElement("li");
+            item.innerHTML = `<strong>${currentUserEmail}</strong>: ${comment}`;
+            list.appendChild(item);
+
+            document.getElementById("commentBox").value = "";
+          }
+    </script>
+
 </body>
 </html>
