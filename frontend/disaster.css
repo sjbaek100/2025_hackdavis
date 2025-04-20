@@ -51,4 +51,36 @@ ul {
     border-radius: 10px;
     padding: 2rem;
     margin-top: 2rem;
+    border: 1px solid #ddd;
 }
+
+
+.toggle-group {
+    display: inline-flex;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    overflow: hidden;
+    width: 12rem;
+  }
+  
+  .toggle-btn {
+    background-color: #f0f4ff;
+    color: #022851;
+    padding: 0.5rem 1.2rem;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background 0.2s;
+    width:50%;
+    text-align: center;
+  }
+  
+  .toggle-btn:hover {
+    background-color: #e0eaff;
+  }
+  
+  .toggle-btn.active {
+    background-color: rgb(171, 197, 245);
+    font-weight: bold;
+  }
+  

@@ -22,8 +22,13 @@
       </div>
       <div class="navbar-right"><a href="login.html">My Account</a></div>
     </nav>
+    
     <main class="disaster-container">
-        <h2>Disaster Alerts</h2>
+      <div class="toggle-group">
+        <button class="toggle-btn" id="alertBtn">Alert</button>
+        <button class="toggle-btn" id="disasterBtn">Disaster</button>
+      </div>
+
         <div id="disaster-list"></div>
       </main>
     <!-- Optional JavaScript -->
@@ -66,7 +71,28 @@
 
     container.appendChild(card);
     });
-
     </script>
+    <script>
+      const alertBtn = document.getElementById("alertBtn");
+      const disasterBtn = document.getElementById("disasterBtn");
+      const current = window.location.pathname;
+    
+      // 현재 페이지에 따라 활성 버튼 설정
+      if (current.includes("disaster")) {
+        disasterBtn.classList.add("active");
+      } else {
+        alertBtn.classList.add("active");
+      }
+    
+      // 클릭 시 페이지 이동
+      alertBtn.onclick = () => {
+        if (!current.includes("index")) window.location.href = "index.html";
+      };
+    
+      disasterBtn.onclick = () => {
+        if (!current.includes("disaster")) window.location.href = "disaster.html";
+      };
+    </script>
+
   </body>
 </html>

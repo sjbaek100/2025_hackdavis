@@ -18,10 +18,9 @@
 }
 
 #filter {
-    padding: 10px;
-
+  padding: 10px;
   font-size: 14px;
-color: black;
+  color: black;
   appearance: none;
   text-align: left;
   border: none;
@@ -36,13 +35,10 @@ color: black;
   
 .post {
     background: white;
-    padding: 15px;
-    margin-bottom: 40px;
+    padding: 1rem;
+    margin: 2rem;
     border: 1px solid #ddd;
     border-radius: 8px;
-    margin-left: 40px;
-    margin-right: 40px;
-    max-height: 300px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     /* Shadow: 0px horizontally, 4px vertically, 6px blur, 20% opacity */
   
@@ -65,6 +61,13 @@ color: black;
   border-radius: 6px;
 }
 
+.like-btn.voted img {
+  filter: invert(51%) sepia(98%) saturate(459%) hue-rotate(76deg) brightness(96%) contrast(89%);
+}
+
+.dislike-btn.voted img {
+  filter: invert(23%) sepia(99%) saturate(5652%) hue-rotate(348deg) brightness(98%) contrast(105%);
+}
 
 .Time {
   color: gray;
@@ -176,4 +179,34 @@ color: black;
     flex-direction: column;
     align-items: stretch;
   }
+}
+
+.toggle-group {
+  display: inline-flex;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  overflow: hidden;
+  margin-left: 2.6rem;
+  width: 12rem;
+}
+
+.toggle-btn {
+  background-color: #f0f4ff;
+  color: #022851;
+  padding: 0.5rem 1.2rem;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.2s;
+  width:50%;
+  text-align: center;
+}
+
+.toggle-btn:hover {
+  background-color: #e0eaff;
+}
+
+.toggle-btn.active {
+  background-color: rgb(171, 197, 245);
+  font-weight: bold;
 }
