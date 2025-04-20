@@ -1,5 +1,7 @@
 .postings-container {
-  margin: 2rem;
+  margin-top: 2rem;
+  margin-left:5rem;
+  margin-right:5rem;
   padding: 1rem;
 }
 
@@ -7,6 +9,7 @@
   display: flex;
   justify-content: space-between;
 }
+
 .dropdown {
   display: inline-flex;
   margin-left: 12rem;
@@ -31,7 +34,7 @@
   gap: 8px;
   background-color: #ffffff;
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
-  /*border: 1px solid #ddd; */
+  border: 0.1px solid #ddd;
   padding: 10px 16px;
   border-radius: 8px;
   font-weight: bold;
@@ -59,6 +62,7 @@
   z-index: 10;
 }
 
+
 .sort-menu.show {
   opacity: 1;
   transform: translateY(0) translateX(-20px);
@@ -69,6 +73,7 @@
 
 .sort-menu li {
   padding: 0.5rem;
+  padding-left: 1.5rem;
   cursor: pointer;
   transition: background-color 0.2s;
 }
@@ -83,7 +88,9 @@
   border-radius: 6px;
   overflow: hidden;
   width: 14rem;
-  max-height: 42px;
+  max-height: 44px;
+  margin-top: 0.5rem;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
 }
 
 .toggle-btn {
@@ -96,10 +103,11 @@
   transition: background 0.2s;
   width : 50%;
   text-align: center;
+  font-size: medium;
 }
 
 .toggle-btn:hover {
-  background-color: #e0eaff;
+  background-color: #b28b0060;
 }
 
 .toggle-btn.active {
@@ -146,35 +154,19 @@
   font-size:1.17em;
 }
 
-
-.like-btn.voted {
-  font-weight: bold;
-  border-radius: 6px;
-  color:rgb(171, 197, 245);
-}
-
-.dislike-btn.voted {
-  font-weight: bold;
-  border-radius: 6px;
-
-}
-
-.like-btn.voted img {
-  filter: invert(51%) sepia(98%) saturate(459%) hue-rotate(76deg) brightness(96%) contrast(89%);
-}
-
-.dislike-btn.voted img {
-  filter: invert(23%) sepia(99%) saturate(5652%) hue-rotate(348deg) brightness(98%) contrast(105%);
+.post-actions {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .Time {
   color: gray;
-  font-size: small;
+  font-size: 0.9em;
 }
 
 .Location-category {
   color: gray;
-  font-size: small;
+  font-size: 0.9em;
 }
 
 .Description {
@@ -184,11 +176,29 @@
   -webkit-box-orient: vertical;
   max-height: 6em;
   margin-top: 2rem;
+  margin-bottom: 2rem;
+  font-size: 0.9em;
 }
 
-.post-actions {
-  display: flex;
-  justify-content: flex-end;
+
+.like-btn.voted {
+  font-weight: bold;
+  border-radius: 6px;
+  color:rgb(116, 162, 247);
+}
+
+.dislike-btn.voted {
+  font-weight: bold;
+  border-radius: 6px;
+  color:rgb(116, 162, 247);
+}
+
+.like-btn.voted img {
+  filter: invert(56%) sepia(67%) saturate(748%) hue-rotate(191deg) brightness(101%) contrast(95%);
+}
+
+.dislike-btn.voted img {
+  filter: invert(56%) sepia(67%) saturate(748%) hue-rotate(191deg) brightness(101%) contrast(95%);
 }
 
 .like-count{
@@ -220,14 +230,16 @@
 }
 
 
-.like-btn:hover .like-icon,
-.dislike-btn:hover .dislike-icon {
-  filter: brightness(0) saturate(100%) invert(0%);
+.like-btn:hover img,.like-btn:hover .like-count,
+.dislike-btn:hover img ,.dislike-btn:hover .dislike-count {
+  filter: invert(56%) sepia(67%) saturate(748%) hue-rotate(191deg) brightness(101%) contrast(95%);
+  color: rgb(116, 162, 247);
 }
 
 .alert-button {
   position: fixed;
   left:90%;
+  margin-top: 5%;
   width: 70px;
   height: 70px;
   background-color: #022851;
@@ -246,6 +258,38 @@
 .alert-button img {
   width: 40px;
   height: 40px;
+}
+
+.tooltip {
+  position: absolute;
+  top: -38px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #FFFF;
+  color: #a30000;
+  padding: 5px 10px;
+  font-size: 14px;
+  border-radius: 5px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  border: 1px solid #a30000;
+}
+
+.tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%; /* 말풍선 아래쪽에 붙이기 */
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 6px;
+  border-style: solid;
+  border-color: #a30000 transparent transparent transparent;
+}
+
+.alert-button:hover .tooltip {
+  opacity: 1;
 }
 
 

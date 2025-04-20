@@ -1,90 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Report Details</title>
-  <link rel="stylesheet" href="post.css" />
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Report Details</title>
+    <link rel="stylesheet" href="post.css"/>
+    <link rel="stylesheet" href="style.css"/>
 </head>
-
 <body>
-  <nav class="navbar">
-    <div class="navbar-center">
-      <a href="index.html" class="logo-link">
-        Aggie Alert
-        <img src="images/logo.svg" class="logo-image" />
-      </a>
-    </div>
-    <div class="navbar-right"><a href="login.html">👤 My Account</a></div>
-  </nav>
-
-  <main>
-    <section id="report-detail" class="report-detail">
-      <h2>Loading Report Title...</h2>
-      <p><strong>Time:</strong> --</p>
-      <p><strong>Location:</strong> --</p>
-      <p><strong>Category:</strong> --</p>
-      <p><strong>Description:</strong><br />Loading description...</p>
-
-      <div>
-        <strong>Uploaded Photo:</strong><br />
-        <img
-          src="images/placeholder.jpg"
-          alt="loading"
-          class="detail-image"
-        />
+    <nav class="navbar">
+      <div class="navbar-center">
+        <a href="index.html" class="logo-link">
+          Aggie Alert
+          <img src="images/logo.svg" class="logo-image" />
+        </a>
       </div>
+      <div class="navbar-right"><a href="login.html"><img src="images/human.svg" class="human-image" />My Account</a></div>
+    </nav>
 
-      <div class="post-actions">
-        <button class="like-btn">
-          <img src="images/thumbs-up.svg" alt="Like" class="reaction-icon" />
-          Like <span class="like-count">0</span>
-        </button>
+    <main>
+      <section class="report-detail">
+        <h2>{{ report.title }}</h2>
 
-        <button class="dislike-btn">
-          <img src="images/thumbs-down.svg" alt="Dislike" class="reaction-icon" />
-          Dislike <span class="dislike-count">0</span>
-        </button>
-      </div>
+        <p><strong>📅 Time:</strong> {{ report.time }}</p>
+        <p><strong>📍 Location:</strong> {{ report.location }}</p>
+        <p><strong>📌 Category:</strong> {{ report.category }}</p>
+        <p><strong>📄 Description:</strong><br />{{ report.description }}</p>
 
-      <div class="comment-section">
-        <h3>Comments</h3>
-        <div class="comment-input">
-          <textarea
-            id="commentBox"
-            placeholder="Write a comment..."
-            rows="3"
-          ></textarea>
-          <button onclick="submitComment()">Submit</button>
+        <!-- {% if report.photo %}
+        <div>
+          <strong>Uploaded Photo:</strong><br />
+          <img
+            src="{{ url_for('static', filename=report.photo) }}"
+            alt="photo"
+            style="
+              max-width: 100%;
+              border: 1px solid #ccc;
+              border-radius: 8px;
+              margin-top: 10px;
+            "
+          />
         </div>
-        <ul id="commentList">
-          <li><strong>demo@user.com</strong>: This is a placeholder comment.</li>
-        </ul>
-      </div>
-    </section>
-  </main>
+        {% endif %} -->
+        <div class="post-actions">
+          <button class="like-btn">
+            <img src="images/thumbs-up.svg" alt="Like" class="reaction-icon" />
+            <span class="like-count">0</span>
+          </button>
 
-  <!-- JS that will replace the static content on load -->
-  <script type="module" src="post.js"></script>
+          <button class="dislike-btn">
+            <img
+              src="images/thumbs-down.svg"
+              alt="Dislike"
+              class="reaction-icon"
+            />
+            <span class="dislike-count">0</span>
+          </button>
+        </div>
+        <div class="comment-section">
+          <h3>Comments</h3>
 
-  <!-- Dummy comment logic for testing -->
-  <script>
-    const currentUserEmail = "akjekjie@gmail.com";
+          <div class="comment-input">
+            <textarea
+              id="commentBox"
+              placeholder="Write a comment..."
+              rows="3"
+            ></textarea>
+            <button onclick="submitComment()">Submit</button>
+          </div>
 
-    function submitComment() {
-      const comment = document.getElementById("commentBox").value.trim();
-      if (!comment) {
-        alert("Please enter a comment.");
-        return;
+          <ul id="commentList"></ul>
+        </div>
+      </section>
+    </main>
+    <script>
+      //dummy data
+      const currentUserEmail = "akjekjie@gmail.com";
+
+      function submitComment() {
+        const comment = document.getElementById("commentBox").value.trim();
+
+        if (!comment) {
+          alert("Please enter a comment.");
+          return;
+        }
+
+        const list = document.getElementById("commentList");
+        const item = document.createElement("li");
+        item.innerHTML = `<strong>${currentUserEmail}</strong>: ${comment}`;
+        list.appendChild(item);
+
+        document.getElementById("commentBox").value = "";
       }
-
-      const list = document.getElementById("commentList");
-      const item = document.createElement("li");
-      item.innerHTML = `<strong>${currentUserEmail}</strong>: ${comment}`;
-      list.appendChild(item);
-      document.getElementById("commentBox").value = "";
-    }
-  </script>
-</body>
+    </script>
+  </body>
 </html>

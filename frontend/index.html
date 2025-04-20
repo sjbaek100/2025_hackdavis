@@ -20,82 +20,110 @@
           <img src="images/logo.svg" class="logo-image" />
         </a>
       </div>
-      <div class="navbar-right">
-        <a href="login.html">👤 My Account</a>
-      </div>
+      <div class="navbar-right"><a href="login.html"><img src="images/human.svg" class="human-image" />My Account</a></div>
     </nav>
-
     <main class="postings-container">
+      <!-- Main content goes here -->
       <div class="group">
-        <div class="toggle-group">
-          <button class="toggle-btn" id="alertBtn">🔔 Alert</button>
-          <button class="toggle-btn" id="disasterBtn">🌪 Disaster</button>
+      <div class="toggle-group">
+        <button class="toggle-btn" id="alertBtn">Alert</button>
+        <button class="toggle-btn" id="disasterBtn">Disaster</button>
+      </div>
+      <div class="dropdown">
+        <div class="sort-toggle" id="sortToggle">
+          <img src="images/sort-10.svg" class="sort-icon" />
+          <span>Sort By</span>
+          <i class="fa-solid fa-chevron-down"></i>
         </div>
+        <ul class="sort-menu" id="sortMenu">
+          <li data-value="newest">Newest Post</li>
+          <li data-value="most_liked">Most Liked</li>
+          <li data-value="oldest">Oldest Post</li>
+        </ul>
+      </div>
+      
+      
+    </div>
+    <div id="posting container">
+        <div class="post">
+          <h2>{{ report.title }}</h2>
+          <p class="Time">📅 {{ report.time }}</p>
+          <p class="Location-category">
+            📍 {{ report.location }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 📌 {{ report.category }}
+          </p>
+          <p class="Description">{{ report.description }}</p>
+          <a href="post.html">Read More</a>
 
-        <div class="dropdown">
-          <div class="sort-toggle" id="sortToggle">
-            <img src="images/sort-10.svg" class="sort-icon" />
-            <span>Sort By</span>
-            <i class="fa-solid fa-chevron-down"></i>
+          <div class="post-actions">
+            <button class="like-btn">
+              <img
+                src="images/thumbs-up.svg"
+                alt="Like"
+                class="reaction-icon"
+              />
+              <span class="like-count">0</span>
+            </button>
+
+            <button class="dislike-btn">
+              <img
+                src="images/thumbs-down.svg"
+                alt="Dislike"
+                class="reaction-icon"
+              />
+              <span class="dislike-count">0</span>
+            </button>
           </div>
-          <ul class="sort-menu" id="sortMenu">
-            <li data-value="newest">Newest Post</li>
-            <li data-value="most_liked">Most Liked</li>
-            <li data-value="oldest">Oldest Post</li>
-          </ul>
+          </div>
         </div>
       </div>
-
-      <!-- Post rendering target container -->
-      <div id="post-list"></div>
     </main>
 
-    <!-- Floating Report Button -->
     <a href="report.html">
       <button class="alert-button">
         <img src="images/logo.svg" class="alert-icon" />
+        <span class="tooltip">REPORT!</span>
       </button>
     </a>
 
-    <!-- JavaScript -->
+    <!-- Optional JavaScript -->
     <script type="module" src="index.js"></script>
     <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const alertBtn = document.getElementById("alertBtn");
-        const disasterBtn = document.getElementById("disasterBtn");
-        const sortToggle = document.getElementById("sortToggle");
-        const sortMenu = document.getElementById("sortMenu");
-        const current = window.location.pathname;
+      const alertBtn = document.getElementById("alertBtn");
+      const disasterBtn = document.getElementById("disasterBtn");
+      const current = window.location.pathname;
+    
+      // 현재 페이지에 따라 활성 버튼 설정
+      if (current.includes("disaster")) {
+        disasterBtn.classList.add("active");
+      } else {
+        alertBtn.classList.add("active");
+      }
+    
+      // 클릭 시 페이지 이동
+      alertBtn.onclick = () => {
+        if (!current.includes("index")) window.location.href = "index.html";
+      };
+    
+      disasterBtn.onclick = () => {
+        if (!current.includes("disaster")) window.location.href = "disaster.html";
+      };
 
-        // Highlight the current view
-        if (current.includes("disaster")) {
-          disasterBtn.classList.add("active");
-        } else {
-          alertBtn.classList.add("active");
-        }
+      const sortToggle = document.getElementById("sortToggle");
+      const sortMenu = document.getElementById("sortMenu");
 
-        // Navigation between views
-        alertBtn.onclick = () => {
-          if (!current.includes("index")) window.location.href = "index.html";
-        };
-
-        disasterBtn.onclick = () => {
-          if (!current.includes("disaster")) window.location.href = "disaster.html";
-        };
-
-        // Toggle sort dropdown
-        sortToggle.addEventListener("click", () => {
-          sortMenu.classList.toggle("show");
-        });
-
-        // Sort option click (delegated to index.js for actual sorting)
-        sortMenu.addEventListener("click", (e) => {
-          const value = e.target.getAttribute("data-value");
-          if (value) {
-            document.getElementById("sortMenu").classList.remove("show");
-          }
-        });
+      sortToggle.addEventListener("click", () => {
+      sortMenu.classList.toggle("show");
       });
+
+      sortMenu.addEventListener("click", (e) => {
+      const value = e.target.getAttribute("data-value");
+      if (value) {
+      console.log("정렬 기준:", value);
+      sortMenu.classList.remove("show");
+      }
+      });
+
     </script>
+    
   </body>
 </html>

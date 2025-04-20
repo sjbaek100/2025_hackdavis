@@ -11,7 +11,7 @@ body {
   background-image: linear-gradient(90deg, #022851, #b28b00);
   /* UC Davis blue to dark yellow */
   color: white;
-  padding: 2rem 1rem;
+  padding: 1.9rem 1rem;
   /* Increased vertical padding */
   position: relative;
 }
@@ -44,4 +44,16 @@ body {
   text-decoration: none;
   font-weight: bold;
   margin-right: 30px;
+}
+
+.human-image{
+  height: 20px; /* adjust as needed */
+  width: 20px;
+  position: relative;
+  margin-bottom:-0.23rem;
+  margin-right: 0.2rem;
+}
+
+.human-image img{
+  fill:#FFFF;
 }
