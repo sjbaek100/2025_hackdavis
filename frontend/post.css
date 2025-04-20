@@ -25,13 +25,13 @@
 
 .like-btn,
 .dislike-btn {
-  padding: 8px 14px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 14px;
-  color: black;
-  background-color: white;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    color: black;
+    background-color: white;
 }
 .reaction-icon {
   width: 20px;
