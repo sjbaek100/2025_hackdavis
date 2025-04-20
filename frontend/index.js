@@ -1,55 +1,56 @@
 const posts = [
-    {
-      id: 1,
-      title: "Lost Wallet",
-      time: "2025-04-19T12:30:00Z",
-      location: "Library",
-      category: "Lost",
-      description: "Black wallet with ID and cards.",
-      likes: 2,
-      dislikes: 0,
-    },
-    {
-      id: 2,
-      title: "Found Keys",
-      time: "2025-04-18T09:00:00Z",
-      location: "Cafeteria",
-      category: "Found",
-      description: "Set of house keys with a red keychain.",
-      likes: 5,
-      dislikes: 1,
-    },
-    {
-      id: 3,
-      title: "Lost Cat",
-      time: "2025-04-17T16:45:00Z",
-      location: "Dorm Area",
-      category: "Lost",
-      description: "Orange cat, answers to 'Pumpkin'.",
-      likes: 1,
-      dislikes: 0,
-    },
-    {
-      id: 4,
-      title: "Found Phone",
-      time: "2025-04-19T08:15:00Z",
-      location: "Lecture Hall",
-      category: "Found",
-      description: "iPhone with cracked screen, no case.",
-      likes: 3,
-      dislikes: 0,
-    },
-    {
-      id: 5,
-      title: "Lost AirPods",
-      time: "2025-04-18T20:00:00Z",
-      location: "Gym",
-      category: "Lost",
-      description: "White AirPods in a green silicone case.",
-      likes: 0,
-      dislikes: 2,
-    }
-  ];
+  {
+    id: 1,
+    title: "Suspicious Activity in Downtown",
+    time: "2025-04-19T12:30:00Z",
+    location: "Downtown Davis",
+    category: "Suspicious Behavior",
+    description: "Man pacing around parking lot for over an hour, appearing to watch people and take notes.",
+    likes: 4,
+    dislikes: 0,
+  },
+  {
+    id: 2,
+    title: "Possible Drug Activity Near Oak Grove",
+    time: "2025-04-18T22:15:00Z",
+    location: "Oak Grove Park",
+    category: "Drug Activity",
+    description: "Saw two individuals exchanging small bags and cash repeatedly by the benches.",
+    likes: 6,
+    dislikes: 1,
+  },
+  {
+    id: 3,
+    title: "Weapon Sighting on G Street",
+    time: "2025-04-17T18:00:00Z",
+    location: "G Street",
+    category: "Weapon Sighting",
+    description: "Person was seen carrying what looked like a handgun under a jacket. Walked toward the 7-Eleven.",
+    likes: 10,
+    dislikes: 2,
+  },
+  {
+    id: 4,
+    title: "Sexual Harassment Incident Near MU",
+    time: "2025-04-19T08:45:00Z",
+    location: "Memorial Union",
+    category: "Sexual Harassment",
+    description: "A man catcalled and followed a student after she left the coffee shop. She looked visibly shaken.",
+    likes: 7,
+    dislikes: 0,
+  },
+  {
+    id: 5,
+    title: "Unusual Behavior at the Arboretum",
+    time: "2025-04-18T16:30:00Z",
+    location: "UC Davis Arboretum",
+    category: "Other",
+    description: "Individual was shouting incoherently and walking into traffic. Possibly in distress or under influence.",
+    likes: 5,
+    dislikes: 1,
+  }
+];
+
   
   const container = document.getElementById('postings-container');
   const filter = document.getElementById('filter');
@@ -94,10 +95,12 @@ const posts = [
     let sortedPosts = [...posts];
     const filterVal = filter.value;
   
-    if (filterVal === 'most_recent') {
+    if (filterVal === 'newest') {
       sortedPosts.sort((a, b) => new Date(b.time) - new Date(a.time));
     } else if (filterVal === 'most_liked') {
       sortedPosts.sort((a, b) => b.likes - a.likes);
+    } else if (filterVal === 'oldest'){
+        sortedPosts.sort((a, b) => new Date(a.time) - new Date(b.time))
     }
   
     renderPosts(sortedPosts);
