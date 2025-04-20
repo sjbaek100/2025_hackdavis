@@ -23,6 +23,7 @@
       <div class="navbar-right" id="authArea">
       </div>
     </nav>
+
     <main class="postings-container">
       <div class="group">
         <div class="toggle-group">
@@ -56,25 +57,25 @@
       </button>
     </a>
 
-    <!-- Optional JavaScript -->
+    <!-- External script for dynamic content (optional) -->
     <script type="module" src="index.js"></script>
+
+    <!-- Core JS Logic -->
     <script>
       const alertBtn = document.getElementById("alertBtn");
       const disasterBtn = document.getElementById("disasterBtn");
       const current = window.location.pathname;
-    
-      // 현재 페이지에 따라 활성 버튼 설정
+
       if (current.includes("disaster")) {
         disasterBtn.classList.add("active");
       } else {
         alertBtn.classList.add("active");
       }
-    
-      // 클릭 시 페이지 이동
+
       alertBtn.onclick = () => {
         if (!current.includes("index")) window.location.href = "index.html";
       };
-    
+
       disasterBtn.onclick = () => {
         if (!current.includes("disaster")) window.location.href = "disaster.html";
       };
@@ -83,15 +84,39 @@
       const sortMenu = document.getElementById("sortMenu");
 
       sortToggle.addEventListener("click", () => {
-      sortMenu.classList.toggle("show");
+        sortMenu.classList.toggle("show");
       });
 
       sortMenu.addEventListener("click", (e) => {
-      const value = e.target.getAttribute("data-value");
-      if (value) {
-      console.log("정렬 기준:", value);
-      sortMenu.classList.remove("show");
-      }
+        const value = e.target.getAttribute("data-value");
+        if (value) {
+          console.log("Sorting by:", value);
+          sortMenu.classList.remove("show");
+        }
+      });
+    </script>
+
+    <!-- ✅ Logged-in UI logic -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const loggedIn = localStorage.getItem("loggedIn") === "true";
+        const email = localStorage.getItem("userEmail");
+
+        if (loggedIn && email) {
+          document.querySelector(".navbar-right").innerHTML = `
+            <span>👤 Logged in as ${email}</span>
+            <a href="#" id="logoutBtn">Logout</a>
+          `;
+        }
+
+        const logoutBtn = document.getElementById("logoutBtn");
+        if (logoutBtn) {
+          logoutBtn.addEventListener("click", () => {
+            localStorage.removeItem("loggedIn");
+            localStorage.removeItem("userEmail");
+            window.location.href = "login.html";
+          });
+        }
       });
     </script>
 
